@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/ForgetPassword.css";
+import "../styles/ForgetPassword.css";
 
 const ForgetPassword = () => {
   return (

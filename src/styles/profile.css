@@ -1,0 +1,14 @@
+/* لعرض الشعار في div منفصل عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px; /* للمسافة بين الشعار والمحتوى */
+    }
+  
+    .logo {
+      max-width: 150px;
+      height: auto;
+    }
+  }
+  

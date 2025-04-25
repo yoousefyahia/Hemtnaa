@@ -1,26 +1,22 @@
 .login-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 70%; /* الجزء الشمال 40% واليمين 60% */
   height: 100vh;
   background-color: white;
-  overflow: hidden;
   width: 100%;
+  overflow: hidden;
 }
 /* body{
   display: flex !important;
 } */
 /* الجزء الشمال */
 .left-side {
-  width: 520px;
-  height: 100vh;
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   position: relative;
-  overflow: hidden;
-  margin-right: 100px;
 }
 
 
@@ -49,15 +45,13 @@
 
 /*  الجزء اليمين */
 .right-side {
-  flex: 1;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: white;
-  padding: 120px;
-  margin: 200px;
-  position: relative;
+  height: 100vh;
 }
 
 .group {
@@ -140,89 +134,55 @@ input {
 
 /* ميديا كويري */
 
-@media (max-width: 1024px) {
-  body{
-    display: block;
-  }
-  .right-side {
-    padding: 60px;
-    margin: 100px;
-  }
-  
-}
-
 @media (max-width: 768px) {
   .login-container {
-    flex-direction: column;
+    grid-template-columns: 1fr; /* تخليهم صف واحد فوق بعض */
   }
 
-  .home {
-    display: none;
-  }
-
-  .circle-top,.left-side,
-  .circle-bottom-left,
-  .group {
-    display: none;
+  .left-side {
+    display: none; /* نخفي الجزء الشمال في الموبايل لتوفير المساحة */
   }
 
   .right-side {
-    width: 100%;
     padding: 20px;
-    margin: 0;
-    text-align: center;
+    width: 100%;
   }
 
-  .right-side form {
-    width: 100%;
+  .group {
+    display: none; /* نخفي صورة الديكور في الأسفل */
   }
 
   input, .login-btn, .signup-btn {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    padding: 10px;
   }
 
   h1 {
     font-size: 2rem;
   }
 
-  .remember-forgot {
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+  p {
+    font-size: 0.9rem;
   }
 
-  .group {
-    width: 100px;
+  .remember-forgot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
   }
 }
 
 @media (max-width: 480px) {
-  body{
-    display: block;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-
   .right-side {
     padding: 15px;
   }
 
-  input {
-    padding: 10px;
+  input, .login-btn, .signup-btn {
+    font-size: 0.85rem;
+    padding: 8px;
   }
 
-  .login-btn {
-    padding: 10px;
-  }
-
-  .home {
-    display: none;
-  }
-
-  .circle-top,.left-side,
-  .circle-bottom-left,
-  .group {
-    display: none;
+  h1 {
+    font-size: 1.5rem;
   }
 }

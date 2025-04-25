@@ -1,0 +1,53 @@
+/* src/styles/Sidebar.css */
+
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #f8f9fa;
+    position: fixed;
+    right: 0;
+    padding-top: 200px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  /* أزرار القائمة */
+  .sidebar button {
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  /* الأيقونات */
+  .sidebar img {
+    margin-bottom: 5px;
+  }
+  
+  /* Responsive: لما تكون الشاشة صغيرة */
+  @media (max-width: 768px) {
+    .sidebar {
+      flex-direction: row !important;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      padding-top: 0;
+      border-top: 1px solid #ddd;
+      background-color: #f8f9fa;
+    }
+  
+    .sidebar button {
+      margin-bottom: 0 !important;
+      font-size: 0.8rem;
+      padding: 6px;
+    }
+  
+    .sidebar img {
+      width: 15px !important;
+      height: 15px !important;
+      margin-bottom: 2px;
+    }
+  }
+  

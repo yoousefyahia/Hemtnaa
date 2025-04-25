@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import "../../styles/Login.css";
+import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 import { Link } from "react-router-dom";
-import ellipse1 from "../../assets/Ellipse 1.png";
-import ellipse2 from "../../assets/Ellipse 2.png";
-import rectangle from "../../assets/Rectangle.png";
-import home from "../../assets/home.png";
-import group from "../../assets/Group.png";
-import hemtna from "../../assets/Hemtnaa.png";
+import ellipse1 from "../assets/Ellipse 1.png";
+import ellipse2 from "../assets/Ellipse 2.png";
+import rectangle from "../assets/Rectangle.png";
+import home from "../assets/home.png";
+import group from "../assets/Group.png";
+import hemtna from "../assets/Hemtnaa.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,27 +17,28 @@ const Login = () => {
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  
     if (!email) {
       newErrors.email = "البريد الإلكتروني مطلوب";
     } else if (!emailRegex.test(email)) {
       newErrors.email = "يرجى إدخال بريد إلكتروني صالح";
     }
-
+  
     if (!password) {
       newErrors.password = "كلمة المرور مطلوبة";
     }
-
+  
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(newErrors).length === 0 ? 1 : 0;
   };
-
+  const navigate = useNavigate(); 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log("تسجيل الدخول باستخدام", email, password);
+    if (validate() === 1) {
+      navigate("/landing");
     }
   };
+  
 
   return (
     <div className="login-container">

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 // import Flag from 'react-world-flags';
-import hemtna from "../../assets/Hemtnaa.png";
+import hemtna from "../assets/Hemtnaa.png";
 
 function SignUp() {
   const [step, setStep] = useState(1);
