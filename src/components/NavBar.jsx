@@ -37,7 +37,7 @@ const NavBar = () => {
   };
 
   const handleProfileClick = () => {
-    navigate("/profile"); // التوجيه إلى صفحة البروفايل
+    navigate("/profile"); 
   };
 
   return (
@@ -73,7 +73,6 @@ const NavBar = () => {
             نسبة الاكتمال: {progress}%
           </small>
 
-          {/* أزرار للتجربة */}
           <div className="mt-2 d-flex gap-2 justify-content-end">
             <button
               className="btn btn-sm btn-outline-success"

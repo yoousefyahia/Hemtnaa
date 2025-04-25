@@ -1,4 +1,3 @@
-// src/components/SideBar.jsx
 import React, { useState } from "react";
 import homeIcon from "../assets/user.png";
 import gamesIcon from "../assets/icon-park-solid_game-ps.png";
