@@ -61,8 +61,8 @@
     }
   
     .user-img {
-      width: 50px;
-      height: 50px;
+      width: 20px !important;
+      height: 20px !important;
     }
   
     .username {
