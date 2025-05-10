@@ -7,7 +7,7 @@ import Activities from "../components/Activity";
 
 const MainContent = ({ activeTab }) => {
   return (
-    <div className="container-fluid p-4" style={{ marginRight: "250px" }}>
+    <div className="container-fluid p-4" style={{ marginRight: "0" }}>
       {activeTab === "home" && <Home />}
       {activeTab === "chat" && <Chat />}
       {activeTab === "games" && <Games />}

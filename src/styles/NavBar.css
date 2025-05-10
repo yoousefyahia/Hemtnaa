@@ -47,12 +47,12 @@
   /* Responsive adjustments */
   @media (max-width: 576px) {
     .navbar-content {
-      flex-direction: column;
+      flex-direction: row;
       align-items: flex-start;
     }
   
     .progress-section {
-      width: 100%;
+      width: auto;
       text-align: start;
     }
   
@@ -69,4 +69,12 @@
       font-size: 1rem;
     }
   }
-  
+  @media (min-width: 992px) {
+  .navbar .user {
+    margin-right: 40px !important;
+  }
+
+  .navbar .progress-section {
+    margin-left: 40px !important;
+  }
+}

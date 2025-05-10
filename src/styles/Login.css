@@ -107,8 +107,9 @@ input {
 
 /*  التذكير وكلمة المرور */
 .remember-forgot {
-  display:flex;
+  display: flex;
   justify-content:space-around;
+  align-items: center; /* ده يخلي النص جنب المربع */
   width: 100%;
   font-size: 14px;
   margin-top: 10px;

@@ -74,10 +74,13 @@ const Login = () => {
           />
           {errors.password && <p className="error">{errors.password}</p>}
 
-          <div className="remember-forgot">
-            <label><input type="checkbox" /> تذكرني</label>
-            <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
-          </div>
+         <div className="remember-forgot">
+  <label style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+    <input type="checkbox" /> تذكرني
+  </label>
+  <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
+</div>
+
 
           <button type="submit" className="login-btn">تسجيل الدخول</button>
         </form>

@@ -41,8 +41,8 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light px-2">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
+    <nav className=" navbar-expand-lg navbar-light bg-light px-2">
+      <div className=" d-flex justify-content-between align-items-center">
         {/* صورة اليوزر */}
         <div className="d-flex align-items-center" onClick={handleProfileClick}>
           <img

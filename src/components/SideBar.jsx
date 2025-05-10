@@ -28,8 +28,8 @@ const Sidebar = ({ setActiveTab }) => {
   return (
     <div className="d-flex flex-column align-items-center sidebar">
       {renderButton("home", "الرئيسية", homeIcon)}
-      {renderButton("chat", "الدردشة", gamesIcon)}
-      {renderButton("games", "الألعاب", chatIcon)}
+     {renderButton("chat", "الدردشة", chatIcon)}
+{renderButton("games", "الألعاب", gamesIcon)}
       {renderButton("activities", "الأنشطة", activitiesIcon)}
     </div>
   );
