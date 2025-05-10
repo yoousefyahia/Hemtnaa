@@ -52,12 +52,14 @@
     }
   
     .progress-section {
-      width: auto;
+      width: 100%;
       text-align: start;
     }
   
     .btn-group {
       justify-content: start;
+      flex-wrap: wrap;
+    gap: 6px;
     }
   
     .user-img {

@@ -1,0 +1,10 @@
+/* لصفحة الـ LandingPage */
+.landing-page-content {
+  margin-right: 250px; /* الـ margin الافتراضي */
+}
+
+@media (max-width: 768px) {
+  .landing-page-content {
+    margin-right: 0; /* إلغاء الـ margin في الشاشات الصغيرة */
+  }
+}
