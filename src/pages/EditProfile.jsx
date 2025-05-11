@@ -5,7 +5,10 @@ import icon1 from "../assets/Group 3.png";
 import icon2 from "../assets/Group 2.png";
 import icon3 from "../assets/Ellipse 5.png";
 import profileHeader from "../assets/Group 1000005390.png";
-import "../styles/EditProfile.css"
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import "../styles/EditProfile.css";
+
 const EditProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,13 +20,16 @@ const EditProfile = () => {
     middleName: "",
     lastName: "",
     email: "",
-    password: "••••••••",
+    password: "",
     country: "",
     phone: "",
     education: "",
     experience: "",
     birthDate: ""
   });
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [profileImage, setProfileImage] = useState(profileHeader);
 
   useEffect(() => {
     if (currentProfile) {
@@ -32,7 +38,7 @@ const EditProfile = () => {
         middleName: currentProfile.middleName || "يحيى",
         lastName: currentProfile.lastName || "السيد",
         email: currentProfile.email || "amrhemdan563@gmail.com",
-        password: "••••••••",
+        password: "0000000",
         country: currentProfile.country || "مصر",
         phone: currentProfile.phone || "+20 1078544486",
         education: currentProfile.education || "بكالوريوس",
@@ -47,6 +53,13 @@ const EditProfile = () => {
     setFormData(prev => ({
       ...prev,
       [name]: value
+    }));
+  };
+
+  const handlePhoneChange = (value) => {
+    setFormData(prev => ({
+      ...prev,
+      phone: value
     }));
   };
 
@@ -76,6 +89,17 @@ const EditProfile = () => {
     return `${day} ${month} ${year}`;
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div dir="rtl" style={{ minHeight: "100vh", position: "relative", backgroundColor: "#f8f9fa", textAlign: 'right' }}>
       {/* شريط التنقل مع الأيقونات */}
@@ -91,33 +115,46 @@ const EditProfile = () => {
 
       {/* الشعار في أقصى اليمين */}
       <div style={{ position: "absolute", top: "20px", left: "20px", zIndex: 10 }}>
-        <img src={logo} alt="شعار الموقع" style={{ height: "150px" }} />
+        <img src={logo} alt="شعار الموقع" style={{ height: "150px" }} className="slogin" />
       </div>
 
       {/* صورة الملف الشخصي في المنتصف */}
       <div className="d-flex justify-content-center" style={{ marginTop: "10px" }}>
-        <div style={{ 
-          height: "100px", 
-          width: "100px",
-          borderRadius: "10px",
-          overflow: "hidden",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          <img 
-            src={profileHeader} 
-            alt="صورة الملف الشخصي" 
-            style={{ 
+        <div
+          style={{
+            height: "100px",
+            width: "100px",
+            borderRadius: "10px",
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer" // تغيير المؤشر عند مرور الماوس
+          }}
+          onClick={() => document.getElementById('profileImageInput').click()} // عند الضغط على الصورة، يتم تفعيل input
+        >
+          <img
+            src={profileImage}
+            alt="صورة الملف الشخصي"
+            style={{
               width: "100%",
               height: "100%",
               objectFit: "cover"
             }}
           />
         </div>
+
+        {/* إدخال لاختيار صورة جديدة */}
+        <input
+          type="file"
+          id="profileImageInput"
+          style={{ display: "none" }} // إخفاء الـ input
+          accept="image/*"
+          onChange={handleImageChange} // التعامل مع الصورة المختارة
+        />
       </div>
 
-      {/*نموذج التعديل  */}
+      {/* نموذج التعديل */}
       <div className="container py-4" style={{ maxWidth: "600px" }}>
         <div style={{ 
           backgroundColor: "#f0f2f5",
@@ -185,55 +222,41 @@ const EditProfile = () => {
                   />
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <label className="form-label fw-bold">كلمة المرور</label>
                 <div className="input-group">
-                  <button 
-                    type="button" 
-                    className="btn btn-outline-primary"
-                    onClick={() => alert("سيتم إضافة وظيفة تعديل كلمة المرور لاحقًا")}
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary" 
+                    onClick={() => setIsPasswordVisible(prev => !prev)}
+                    style={{ fontSize: "0.8rem", padding: "8px" }} // تقليص حجم الزر
                   >
-                    تعديل
+                    {isPasswordVisible ? "إخفاء" : "إظهار"}
                   </button>
                   <input
-                    type="password"
+                    type={isPasswordVisible ? "text" : "password"}
                     className="form-control"
+                    name="password"
                     value={formData.password}
-                    readOnly
-                    style={{ backgroundColor: "#fff" }}
+                    onChange={handleChange}
+                    required
+                    style={{ backgroundColor: "#fff", height: "50px" }}
                   />
                 </div>
               </div>
             </div>
 
-            {/* الدولة والهاتف */}
+            {/* رقم الهاتف مع رمز الدولة */}
             <div className="row mb-3">
-              <div className="col-md-6">
-                <label className="form-label fw-bold">الدولة</label>
-                <select
-                  className="form-select"
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  required
-                  style={{ backgroundColor: "#fff" }}
-                >
-                  <option value="مصر">مصر</option>
-                  <option value="الولايات المتحدة">الولايات المتحدة</option>
-                  <option value="المملكة المتحدة">المملكة المتحدة</option>
-                  <option value="الإمارات">الإمارات</option>
-                </select>
-              </div>
-              <div className="col-md-6">
-                <label className="form-label">الهاتف</label>
-                <input
-                  type="tel"
-                  className="form-control"
-                  name="phone"
+              <div className="col-md-12">
+                <label className="form-label">رقم الهاتف</label>
+                <PhoneInput
+                  international
+                  defaultCountry="EG"
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={handlePhoneChange}
+                  className="form-control"
                   required
-                  style={{ backgroundColor: "#fff" }}
                 />
               </div>
             </div>
@@ -250,32 +273,20 @@ const EditProfile = () => {
                   required
                   style={{ backgroundColor: "#fff" }}
                 >
-                  <option value="بكالوريوس">بكالوريوس</option>
-                  <option value="ماجستير">ماجستير</option>
-                  <option value="دكتوراه">دكتوراه</option>
-                  <option value="دبلوم">دبلوم</option>
+                  <option value="بكالوريوس">حضانه</option>
+                  <option value="دبلوم">ابتدائئ</option>
+                  <option value="ماجستير">اعدادي</option>
+                                    <option value="ماجستير">ثانوي</option>
+                  <option value="ماجستير">جامعي</option>
+
                 </select>
               </div>
-              <div className="col-md-6">
-                <label className="form-label">سنوات الخبرة</label>
-                <select
-                  className="form-select"
-                  name="experience"
-                  value={formData.experience}
-                  onChange={handleChange}
-                  required
-                  style={{ backgroundColor: "#fff" }}
-                >
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(year => (
-                    <option key={year} value={`${year} سنوات`}>{year} سنوات</option>
-                  ))}
-                </select>
-              </div>
+            
             </div>
 
             {/* تاريخ الميلاد */}
-            <div className="mb-4">
-              <label className="form-label fw-bold">تاريخ الميلاد</label>
+            <div className="mb-3">
+              <label className="form-label">تاريخ الميلاد</label>
               <input
                 type="date"
                 className="form-control"
@@ -287,21 +298,10 @@ const EditProfile = () => {
               />
             </div>
 
-            {/* أزرار الحفظ والإلغاء */}
-            <div className="d-flex justify-content-start gap-2 mt-4">
-              <button
-                type="submit" 
-                className="btn btn-primary px-4"
-                style={{ backgroundColor: "#0d6efd", borderColor: "#0d6efd" }}
-              >
+            {/* زر الحفظ */}
+            <div className="text-center">
+              <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }}>
                 حفظ التغييرات
-              </button>
-              <button
-                type="button"
-                className="btn btn-outline-secondary px-4"
-                onClick={() => navigate("/profile")}
-              >
-                إلغاء
               </button>
             </div>
           </form>

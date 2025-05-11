@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatBot from "react-simple-chatbot";
 
 const steps = [
@@ -68,24 +68,60 @@ const steps = [
   },
 ];
 
-const Chat = () => (
-  <div className="container d-flex align-items-center flex-column">
-    <h3 className="mb-3 text-primary">المساعد الذكي👨‍⚕️🧒</h3>
-    <div className="chatbot-container">
-      <ChatBot
-        steps={steps}
-        botAvatar="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"
-        userAvatar="https://cdn-icons-png.flaticon.com/512/4712/4712034.png"
-        placeholder="اكتب هنا..."
-        headerTitle="المساعد الذكي"
-        floating={false}
-        style={{
-          borderRadius: "10px",
-          boxShadow: "0 0 10px rgba(0,0,0,0.2)",
-        }}
-      />
+const Chat = () => {
+  const [activeTab, setActiveTab] = useState("doctor");
+
+  return (
+    <div className="container d-flex flex-column align-items-center my-5 py-5">
+      <div className="d-flex justify-content-between gap-4 mb-4" style={{ width: '100%', maxWidth: '400px' }}>
+        {/* زر الدكتور */}
+        <button
+          className={`btn w-50 ${activeTab === "doctor" ? "btn-primary" : "btn-outline-primary"}`}
+          onClick={() => setActiveTab("doctor")}
+        >
+          تحدث مع الدكتور
+        </button>
+
+        {/* زر AI */}
+        <button
+          className={`btn w-50 ${activeTab === "ai" ? "btn-primary" : "btn-outline-primary"}`}
+          onClick={() => setActiveTab("ai")}
+        >
+          المساعد الذكي
+        </button>
+      </div>
+
+      {/* محتوى حسب الزر النشط */}
+      {activeTab === "doctor" && (
+        <div className="text-center mt-4">
+          <p style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#555" }}>
+            سيتم الرد عند توفر الطبيب المختص
+          </p>
+        </div>
+      )}
+
+      {activeTab === "ai" && (
+        <>
+          <h3 className="mb-3 text-primary">المساعد الذكي👨‍⚕️🧒</h3>
+          <div className="chatbot-container">
+            <ChatBot
+              steps={steps}
+              botAvatar="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"
+              userAvatar="https://cdn-icons-png.flaticon.com/512/4712/4712034.png"
+              placeholder="اكتب هنا..."
+              headerTitle="المساعد الذكي"
+              floating={false}
+              style={{
+                borderRadius: "10px",
+                boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+                maxWidth: "400px",
+              }}
+            />
+          </div>
+        </>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 export default Chat;

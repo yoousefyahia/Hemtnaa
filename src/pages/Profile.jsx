@@ -11,15 +11,15 @@ const Profile = () => {
     firstName: "يوسف",
     middleName: "يحيى",
     lastName: "السيد",
-    email: "amrhemdan563@gmail.com",
+    email: "yoousefyahia@gmail.com",
     country: "مصر",
-    phone: "+20 1053628577",
+    phone: "+201053628577",
     education: "بكالوريوس",
     experience: "5 سنوات",
     birthDate: "7 مارس 2023",
     memberType: "طفل",
-    joinDate: "12 أغسطس 2022",
-    lastActivity: "منذ 22 ساعة"
+    joinDate: "12 أغسطس 2025",
+    lastActivity: "منذ 22 دقيقه"
   };
 
   const [profile, setProfile] = useState(defaultProfile);
@@ -48,7 +48,7 @@ const Profile = () => {
 
 
       {/* المحتوى الرئيسي */}
-      <div className="container py-4" style={{ maxWidth: "600px", marginTop: "-150px" }}>
+      <div className="container pref py-4" style={{ maxWidth: "600px" }}>
         {/* بطاقة المعلومات الشخصية */}
         <div className="card shadow-sm mb-4">
           <div className="card-body d-flex  align-items-center">

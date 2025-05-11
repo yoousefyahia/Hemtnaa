@@ -10,10 +10,15 @@
   
     .logo-img {
       height: 10px;
+           display: none;
+
     }
   
     .profile-header {
       width: 80px;
       height: 80px;
+    }
+    .slogin{
+display: none;
     }
   }
