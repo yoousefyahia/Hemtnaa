@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import ellipse1 from "../assets/Ellipse 1.png";
 import ellipse2 from "../assets/Ellipse 2.png";
 import rectangle from "../assets/Rectangle.png";
@@ -13,32 +14,50 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [generalError, setGeneralError] = useState("");
+  const navigate = useNavigate();
 
-  const validate = () => {
-    const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    if (!email) {
-      newErrors.email = "البريد الإلكتروني مطلوب";
-    } else if (!emailRegex.test(email)) {
-      newErrors.email = "يرجى إدخال بريد إلكتروني صالح";
-    }
-  
-    if (!password) {
-      newErrors.password = "كلمة المرور مطلوبة";
-    }
-  
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0 ? 1 : 0;
-  };
-  const navigate = useNavigate(); 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (validate() === 1) {
+    setErrors({});
+    setGeneralError("");
+
+    try {
+      const response = await axios.post("https://hemtna.runasp.net/Auth/login", {
+        Email: email,
+        Password: password
+      });
+
+      // في حالة النجاح، يمكنك تخزين التوكن أو أي بيانات أخرى حسب الحاجة
+      // ثم توجيه المستخدم إلى الصفحة الرئيسية
       navigate("/landing");
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+
+        if (status === 400 && data.errors) {
+          // معالجة أخطاء التحقق من الصحة
+          const newErrors = {};
+          if (data.errors.Email) {
+            newErrors.email = data.errors.Email[0];
+          }
+          if (data.errors.Password) {
+            newErrors.password = data.errors.Password[0];
+          }
+          setErrors(newErrors);
+        } else if (status === 401) {
+          // بيانات الاعتماد غير صحيحة
+          setGeneralError("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
+        } else {
+          // أخطاء أخرى من الخادم
+          setGeneralError("حدث خطأ غير متوقع. حاول مرة أخرى.");
+        }
+      } else {
+        // مشكلة في الاتصال بالخادم
+        setGeneralError("تعذر الاتصال بالخادم. تحقق من اتصالك بالإنترنت.");
+      }
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -74,16 +93,17 @@ const Login = () => {
           />
           {errors.password && <p className="error">{errors.password}</p>}
 
-         <div className="remember-forgot">
-  <label style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-    <input type="checkbox" /> تذكرني
-  </label>
-  <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
-</div>
-
+          <div className="remember-forgot">
+            <label style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <input type="checkbox" /> تذكرني
+            </label>
+            <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
+          </div>
 
           <button type="submit" className="login-btn">تسجيل الدخول</button>
         </form>
+
+        {generalError && <p className="error">{generalError}</p>}
 
         <p>
           ليس لديك حساب؟ <Link to="/signup">إنشاء حساب</Link>

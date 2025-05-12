@@ -19,7 +19,7 @@ function SignUp() {
     confirmPassword: '' 
   });   
 
-  const [errors, setErrors] = useState({}); // حفظ الأخطاء للتحقق منها
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {     
     setFormData({ ...formData, [e.target.name]: e.target.value });   
@@ -40,7 +40,7 @@ function SignUp() {
     if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "كلمة المرور وتأكيد كلمة المرور غير متطابقين";
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // إذا كانت الأخطاء فارغة فهذا يعني أن التحقق تم بنجاح
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = () => {
@@ -71,7 +71,7 @@ function SignUp() {
 
       {step === 1 && (         
         <>           
-          <Form.Select name="userType" value={formData.userType} onChange={handleChange} className="mb-3">             
+          <Form.Select name="userType" value={formData.userType} onChange={handleChange} className="mb-3" dir="rtl">             
             <option value="">من أنت؟</option>             
             <option value="parent">ولي أمر</option>             
             <option value="doctor">طبيب</option>             
@@ -85,11 +85,15 @@ function SignUp() {
       {step === 2 && (         
         <>           
           <Row>             
-            <Col><Form.Control name="firstName" placeholder="الاسم الأول" value={formData.firstName} onChange={handleChange} className="mb-3" /></Col>             
-            <Col><Form.Control name="lastName" placeholder="الاسم الأخير" value={formData.lastName} onChange={handleChange} className="mb-3" /></Col>           
+            <Col>
+              <Form.Control name="firstName" placeholder="الاسم الاخير" value={formData.firstName} onChange={handleChange} className="mb-3" dir="rtl" />
+              {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
+            </Col>             
+            <Col>
+              <Form.Control name="lastName" placeholder="الاسم الاول" value={formData.lastName} onChange={handleChange} className="mb-3" dir="rtl" />
+              {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
+            </Col>           
           </Row>            
-          {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
-          {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
 
           <Row>             
             <Col md={12}>               
@@ -106,17 +110,18 @@ function SignUp() {
 
           <Row>             
             <Col md={6}>               
-              <Form.Control type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} className="mb-3" />
+              <Form.Control type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} className="mb-3" dir="rtl" />
               {errors.birthDate && <div className="text-danger">{errors.birthDate}</div>}             
             </Col>             
             <Col md={6}>               
-              <Form.Select name="childProblem" value={formData.childProblem} onChange={handleChange} className="mb-3">
-                <option>مشكلة الطفل</option>
-                <option value="autism">التوحد</option>
-                <option value="adhd">ADHD(فرط حركه)</option>
-                <option value="hearing">صعوبة السمع</option>
-                <option value="speech">صعوبة التكلم</option>
-              </Form.Select>
+              <Form.Select name="childProblem" value={formData.childProblem} onChange={handleChange} className="mb-3" dir="rtl">
+  <option value="" disabled hidden >مشكلة الطفل</option>
+  <option value="autism">التوحد</option>
+  <option value="adhd">ADHD(فرط حركه)</option>
+  <option value="hearing">صعوبة السمع</option>
+  <option value="speech">صعوبة التكلم</option>
+</Form.Select>
+
               {errors.childProblem && <div className="text-danger">{errors.childProblem}</div>}             
             </Col>           
           </Row>            
@@ -128,6 +133,7 @@ function SignUp() {
             value={formData.password} 
             onChange={handleChange} 
             className="mb-3" 
+            dir="rtl"
           />
           {errors.password && <div className="text-danger">{errors.password}</div>}
 
@@ -138,6 +144,7 @@ function SignUp() {
             value={formData.confirmPassword} 
             onChange={handleChange} 
             className="mb-3" 
+            dir="rtl"
           />
           {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
 
