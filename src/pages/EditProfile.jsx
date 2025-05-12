@@ -147,9 +147,9 @@ const EditProfile = () => {
         <input
           type="file"
           id="profileImageInput"
-          style={{ display: "none" }} // إخفاء الـ input
+          style={{ display: "none" }} 
           accept="image/*"
-          onChange={handleImageChange} // التعامل مع الصورة المختارة
+          onChange={handleImageChange} 
         />
       </div>
 

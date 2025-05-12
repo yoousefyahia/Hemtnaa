@@ -14,8 +14,8 @@ const Profile = () => {
     email: "yoousefyahia@gmail.com",
     country: "مصر",
     phone: "+201053628577",
-    education: "بكالوريوس",
-    experience: "5 سنوات",
+    education: "حضانه",
+    // experience: "5 سنوات",
     birthDate: "7 مارس 2023",
     memberType: "طفل",
     joinDate: "12 أغسطس 2025",
@@ -98,10 +98,10 @@ const Profile = () => {
                   <h6 className="fw-bold">التعليم</h6>
                   <p>{profile.education}</p>
                 </div>
-                <div className="col-md-6 mb-3">
+                {/* <div className="col-md-6 mb-3">
                   <h6 className="fw-bold">الخبرة</h6>
                   <p>{profile.experience}</p>
-                </div>
+                </div> */}
                 <div className="col-md-6">
                   <h6 className="fw-bold">تاريخ الميلاد</h6>
                   <p>{profile.birthDate}</p>
