@@ -102,7 +102,6 @@ const EditProfile = () => {
 
   return (
     <div dir="rtl" style={{ minHeight: "100vh", position: "relative", backgroundColor: "#f8f9fa", textAlign: 'right' }}>
-      {/* شريط التنقل مع الأيقونات */}
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{ padding: "20px 20px" }}>
         <div className="container-fluid justify-content-start ps-0">
           <div className="d-flex align-items-center gap-3">
@@ -113,12 +112,12 @@ const EditProfile = () => {
         </div>
       </nav>
 
-      {/* الشعار في أقصى اليمين */}
+      {/*الشعار*/}
       <div style={{ position: "absolute", top: "20px", left: "20px", zIndex: 10 }}>
         <img src={logo} alt="شعار الموقع" style={{ height: "150px" }} className="slogin" />
       </div>
 
-      {/* صورة الملف الشخصي في المنتصف */}
+      {/* صورة الملف الشخصي   */}
       <div className="d-flex justify-content-center" style={{ marginTop: "10px" }}>
         <div
           style={{
@@ -129,9 +128,9 @@ const EditProfile = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            cursor: "pointer" // تغيير المؤشر عند مرور الماوس
+            cursor: "pointer" 
           }}
-          onClick={() => document.getElementById('profileImageInput').click()} // عند الضغط على الصورة، يتم تفعيل input
+          onClick={() => document.getElementById('profileImageInput').click()}
         >
           <img
             src={profileImage}
@@ -144,7 +143,7 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* إدخال لاختيار صورة جديدة */}
+        {/*  اختيار صورة جديدة */}
         <input
           type="file"
           id="profileImageInput"
@@ -229,7 +228,7 @@ const EditProfile = () => {
                     type="button"
                     className="btn btn-outline-primary" 
                     onClick={() => setIsPasswordVisible(prev => !prev)}
-                    style={{ fontSize: "0.8rem", padding: "8px" }} // تقليص حجم الزر
+                    style={{ fontSize: "0.8rem", padding: "8px" }}
                   >
                     {isPasswordVisible ? "إخفاء" : "إظهار"}
                   </button>
@@ -298,7 +297,6 @@ const EditProfile = () => {
               />
             </div>
 
-            {/* زر الحفظ */}
             <div className="text-center">
               <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }}>
                 حفظ التغييرات

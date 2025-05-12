@@ -28,15 +28,12 @@ const Login = () => {
         Password: password
       });
 
-      // في حالة النجاح، يمكنك تخزين التوكن أو أي بيانات أخرى حسب الحاجة
-      // ثم توجيه المستخدم إلى الصفحة الرئيسية
       navigate("/landing");
     } catch (error) {
       if (error.response) {
         const { status, data } = error.response;
 
         if (status === 400 && data.errors) {
-          // معالجة أخطاء التحقق من الصحة
           const newErrors = {};
           if (data.errors.Email) {
             newErrors.email = data.errors.Email[0];
@@ -46,10 +43,8 @@ const Login = () => {
           }
           setErrors(newErrors);
         } else if (status === 401) {
-          // بيانات الاعتماد غير صحيحة
           setGeneralError("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
         } else {
-          // أخطاء أخرى من الخادم
           setGeneralError("حدث خطأ غير متوقع. حاول مرة أخرى.");
         }
       } else {
