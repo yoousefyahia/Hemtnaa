@@ -1,20 +1,50 @@
 .step-indicator-wrapper {
   position: relative;
   width: 150px; 
-  height: 8px; 
-  margin: 0 15px; 
+  height: 5px; 
+  margin: 0 15px;
+  background-color: #e9ecef;
+  top: 12px;
 }
 
 .step-indicator {
   position: absolute;
-  top: 9px; 
-  width: 60%; 
-  height: 140%; 
-  background-color: blue; 
-  transition: left 0.2s ease; 
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #0d88ed;
+  transition: left 0.2s ease;
 }
+
+.step-circle {
+  position: relative;
+  top: 15px;
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 768px) {
+  .step-indicator-wrapper {
+    width: 100px;
+    margin: 0 10px;
+  }
+}
+
+/* للشاشات الصغيرة */
 @media (max-width: 576px) {
-    .step-indicator  {
-    top: 20px;
-    }
+  .step-indicator-wrapper {
+    width: 60px;
+    margin: 0 8px;
+  }
+  
+  .step-indicator {
+    width: 50%;
+  }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 360px) {
+  .step-indicator-wrapper {
+    width: 40px;
+    margin: 0 5px;
+  }
 }

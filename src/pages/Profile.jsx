@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import userImage from "../assets/Ellipse 8.png";
 import logo from "../assets/Hemtnaa.png";
 import "../styles/profile.css"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -144,6 +147,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" rtl />
     </div>
   );
 };

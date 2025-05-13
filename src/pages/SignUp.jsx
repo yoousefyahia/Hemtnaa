@@ -12,6 +12,7 @@ function SignUp() {
     userType: '',
     firstName: '',
     lastName: '',
+    email: '',
     phone: '',
     birthDate: '',
     childProblem: '',
@@ -33,6 +34,8 @@ function SignUp() {
     if (!formData.userType) newErrors.userType = "من فضلك اختر نوع المستخدم";
     if (!formData.firstName) newErrors.firstName = "من فضلك أدخل الاسم الأول";
     if (!formData.lastName) newErrors.lastName = "من فضلك أدخل الاسم الأخير";
+    if (!formData.email) newErrors.email = "من فضلك أدخل البريد الإلكتروني";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "من فضلك أدخل بريد إلكتروني صحيح";
     if (!formData.phone) newErrors.phone = "من فضلك أدخل رقم الهاتف";
     if (!formData.birthDate) newErrors.birthDate = "من فضلك اختر تاريخ الميلاد";
     if (!formData.childProblem) newErrors.childProblem = "من فضلك اختر مشكلة الطفل";
@@ -63,7 +66,7 @@ function SignUp() {
           <div className="mx-2">من أنت؟</div>
         </div>
         <div className="step-indicator-wrapper">
-          <div className="step-indicator" style={{ left: `${(step - 1) * 50}%` }}></div> {/* تغيير موقع المؤشر بناءً على الخطوة */}
+          <div className="step-indicator" style={{ left: `${(step - 1) * 50}%` }}></div>
         </div>
         <div className="d-flex align-items-center">
           <div className={`rounded-circle border ${step === 2 ? 'bg-primary text-white' : ''}`} style={{ width: 25, height: 25, textAlign: 'center' }}>2</div>
@@ -75,7 +78,6 @@ function SignUp() {
         <>
           <Form.Select name="userType" value={formData.userType} onChange={handleChange} className="mb-3" dir="rtl">
             <option value="">من أنت؟</option>
-            <option value="parent">ولي أمر</option>
             <option value="doctor">طبيب</option>
             <option value="senior">طفل</option>
           </Form.Select>
@@ -94,6 +96,21 @@ function SignUp() {
             <Col>
               <Form.Control name="lastName" placeholder="الاسم الاول" value={formData.lastName} onChange={handleChange} className="mb-3" dir="rtl" />
               {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={12}>
+              <Form.Control 
+                type="email"
+                name="email"
+                placeholder="البريد الإلكتروني"
+                value={formData.email}
+                onChange={handleChange}
+                className="mb-3"
+                dir="rtl"
+              />
+              {errors.email && <div className="text-danger">{errors.email}</div>}
             </Col>
           </Row>
 
