@@ -1,0 +1,174 @@
+.butt-Diolog{
+    padding: 10px 20px;
+    border: 2px solid #135991;
+    border-radius: 8px;
+    background-color: white;
+    color: #135991;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+.butt-Diolog:hover {
+    background-color: #a4c1d836;
+    color: white;
+    transform: scale(1.05);
+}
+.butt-Diolog:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 2px rgba(19, 89, 145, 0.3);
+}
+.boxDia{
+    border-radius: 35px;
+    border: medium;
+    border-color: #F0F2F5;
+    width: 100%;
+    max-width: 500px;
+    padding: 0;
+}
+.close-name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+.close{
+    border: transparent;
+    background-color: transparent; /* شفاف تماماً */
+    font-size: 25px;
+    color: #65676B;
+    transition: all 0.2s ease;
+
+}
+.close:hover{
+    color: #600b0b;
+    transform: scale(1.05); /* يكبر شوي */
+    font-weight: bold;  
+}
+.close:active {
+    transform: scale(1.2) rotate(10deg); /* تكبير وتدوير بسيط */
+    color: #b00020; /* لون نبيتي غامق عند الضغط */
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+.img-name img{
+    border: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 8px;
+} 
+.img-name h4{
+    font-family: poppins;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+}
+.sq-text{
+    width: 100%;
+    height: 100px;
+    border: 1px solid transparent;
+    text-align: right;
+    padding: 15px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 10px;
+}
+.sq-text:hover{
+    border: 1px solid rgba(237, 237, 237, 0.851);
+}
+.sq-text:focus{
+    outline: none;
+}
+.sq-text:active{
+    border: 1px solid rgba(237, 237, 237, 0.851);
+}
+/* نشر */
+.btn-upload{
+    color: #65676B;
+    padding: 15px ;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+.btn-upload label {
+  cursor: pointer;
+  display: flex;
+  align-items: stretch;
+  transition: all 0.2s ease;
+  flex-direction: row-reverse;
+}
+.btn-upload svg {
+    font-size: 27px;
+    color: #65676B;
+    transition: color 0.2s ease;
+}
+.btn-upload:hover ,.BTN-INPUT:hover{
+    color: #135991;
+}
+.custom-file-input {
+  color: transparent;
+  display: none;
+}
+.BTN-INPUT{
+  font-size: 18px;
+  font-family: poppins;
+  font-weight: 700;
+  color: #65676B;
+  margin-right: 10px;
+  transition: color 0.2s ease;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'صور أو فيديوهات';
+  color: black;
+  display: flex;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: poppins;
+}
+.btn-upload label:hover svg,
+.btn-upload label:hover .BTN-INPUT {
+    color: #135991;
+}
+.btn-upload label:active svg,
+.btn-upload label:active .BTN-INPUT {
+    color: #135991;
+    transform: scale(0.98);
+}
+/* Adjust the post button container */
+.post-button-container {
+  margin:-1px 29px 15px;
+  display: flex;
+  justify-content: flex-start;
+} 
+/* Style for the post button */
+ .post-button {
+  background-color: #135991;
+  color: white;
+  padding: 9px 27px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 18px;
+  font-family: poppins;
+}
+.post-button:hover {
+    font-size: 75%;
+}
+hr{
+  margin: 20px;;
+}
+@media screen and (max-width: 660px) {
+   .img-name h4{
+    font-size: 18px;
+   }
+}

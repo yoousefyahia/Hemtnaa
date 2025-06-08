@@ -1,0 +1,823 @@
+.butt-DiologRating{
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.butt-Diolog{
+    width: 502px;
+    height: 47px;
+    border-radius: 15px;
+    background-color: #f7f7f7;
+    border: medium;
+    border-color: #F0F2F5;
+    font-family: poppins;
+    font-size: 18px;
+    font-weight: 400;
+    color: #65676B;
+    text-align: right;
+    margin-right: 10px;
+}
+.boxDia{
+    border-radius: 35px;
+    border: medium;
+    border-color: #F0F2F5;
+    width: 100%;
+    max-width: 500px;
+    max-height: 882px;
+    min-height: 400px;
+    padding: 0;
+    direction: rtl;
+}
+.boxDia-Profile{
+    border-radius: 35px;
+    border: medium;
+    border-color: #F0F2F5;
+    width: 81%;
+    max-width: 416px;
+    max-height: 682px;
+    padding: 0;
+}
+.boxDia{
+    border-radius: 35px;
+    border: medium;
+    border-color: #F0F2F5;
+    width: 88%;
+    max-width: 500px;
+    max-height: 882px;
+    min-height: 400px;
+    padding: 0;
+    direction: rtl;
+}
+.close-name{
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+.close{
+    border: transparent;
+    background-color: transparent; /* شفاف تماماً */
+    font-size: 25px;
+    color: #65676B;
+    transition: all 0.2s ease;
+
+}
+.close:hover{
+    color: #600b0b;
+    transform: scale(1.05); /* يكبر شوي */
+    font-weight: bold;  
+}
+.close:active {
+    transform: scale(1.2) rotate(10deg); /* تكبير وتدوير بسيط */
+    color: #b00020; /* لون نبيتي غامق عند الضغط */
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+  .img-name{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    align-items: center;
+    margin-top: 10px;
+}  
+.img-name img{
+    border: transparent;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 8px;
+} 
+.sq-text{
+    width: 100%;
+    height: 100px;
+    border: 1px solid #0000000f;
+    text-align: right;
+    padding: 15px;
+    resize: none;
+    margin-bottom: 10px;
+}
+.sq-text:hover{
+    border: 1px solid rgba(150, 145, 145, 0.593);
+}
+.sq-text:focus{
+    outline: none;
+}
+.sq-text:active{
+    border: 1px solid rgba(197, 197, 197, 0.851);
+}
+/* نشر */
+.btn-upload{
+    color: #65676B;
+    padding: 15px ;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15px;
+    direction: ltr;
+}
+.btn-upload label {
+  cursor: pointer;
+  display: flex;
+  align-items: stretch;
+  transition: all 0.2s ease;
+  flex-direction: row-reverse;
+}
+.btn-upload svg {
+    font-size: 27px;
+    color: #65676B;
+    transition: color 0.2s ease;
+}
+.btn-upload:hover ,.BTN-INPUT:hover{
+    color: #135991;
+}
+.custom-file-input {
+  color: transparent;
+  display: none;
+}
+.BTN-INPUT{
+  font-size: 18px;
+  font-family: poppins;
+  font-weight: 700;
+  color: #65676B;
+  margin-right: 10px;
+  transition: color 0.2s ease;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'صور أو فيديوهات';
+  color: black;
+  display: flex;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: poppins;
+}
+.btn-upload label:hover svg,
+.btn-upload label:hover .BTN-INPUT {
+    color: #135991;
+}
+.btn-upload label:active svg,
+.btn-upload label:active .BTN-INPUT {
+    color: #135991;
+    transform: scale(0.98);
+}
+/* Adjust the post button container */
+.post-button-container {
+  margin:-1px 29px 15px;
+  display: flex;
+  flex-direction: row-reverse;
+} 
+/* Style for the post button */
+ .post-button {
+  background-color: #135991;
+  color: white;
+  padding: 9px 27px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 18px;
+  font-family: poppins;
+}
+.post-button:hover {
+    font-size: 75%;
+}
+hr{
+  margin: 20px;;
+}
+
+
+/* Rating Stars Styles */
+.rating-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    direction: ltr;
+}
+.rating-stars input {
+    display: none;
+}
+.rating-stars label {
+    cursor: pointer;
+    font-size: 30px;
+    color: #ddd;
+    padding: 5px;
+    transition: all 0.2s ease;
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label,
+.rating-stars input:checked ~ label {
+    color: #ffd700;
+}
+
+.rating-stars label:active {
+    transform: scale(1.1);
+}
+
+.rating-text {
+    text-align: center;
+    color: #65676B;
+    font-family: poppins;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/* Buttons Container */
+.dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 20px;
+    direction: rtl;
+}
+/*Activity Form Styles */
+.activity-form {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    direction: rtl;
+    background: rgb(255 255 255 / 59%);
+    border-radius: 16px;
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.05),
+        0 8px 16px rgba(19, 89, 145, 0.04),
+        0 2px 8px rgba(19, 89, 145, 0.02);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.activity-form:hover {
+    box-shadow: 
+        0 8px 40px rgba(0, 0, 0, 0.08),
+        0 12px 20px rgba(19, 89, 145, 0.06),
+        0 4px 12px rgba(19, 89, 145, 0.04);
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    background-color: transparent;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e4e6eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: poppins;
+}
+
+.form-input:hover {
+    background-color: rgba(255, 255, 255, 0.647);
+    border-color: #135991;
+    box-shadow: 0 0 0 2px rgba(19, 89, 145, 0.1);
+    color: #000;
+}
+
+.form-input:focus {
+    outline: none;
+    outline: none;
+    border-color: #135991;
+    box-shadow: 0 0 0 3px rgba(19, 89, 145, 0.2);
+}
+
+.date-inputs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.date-input {
+    flex: 1;
+}
+
+.textarea-description {
+    background-color: transparent;
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    padding: 15px;
+    border: 1px solid #e4e6eb;
+    border-radius: 8px;
+    font-family: poppins;
+    transition: all 0.3s ease;
+}
+
+.textarea-description:hover {
+    background-color: rgba(255, 255, 255, 0.647);
+    border-color: #135991;
+    box-shadow: 0 0 0 2px rgba(19, 89, 145, 0.1);
+}
+
+.textarea-description:focus {
+    outline: none;
+    border-color: #13599124;
+    box-shadow: 0 0 0 3px rgba(19, 89, 145, 0.2)}
+
+.image-upload-area {
+    border: 2px dashed #e4e6eb;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    position: relative;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    max-width: 150px;
+}
+
+.image-preview-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.image-preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+
+.image-preview-container:hover .image-preview-overlay {
+    opacity: 1;
+}
+
+.delete-image-btn {
+    background: transparent;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.2s ease;
+    transform: translateY(10px);
+    font-size: 14px;
+}
+
+.image-preview-container:hover .delete-image-btn {
+    transform: translateY(0);
+}
+
+.delete-image-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.delete-image-btn:active {
+    transform: scale(0.95);
+}
+
+.upload-placeholder {
+    color: #65676B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.upload-placeholder img {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    width: 40px;
+}
+
+.upload-text {
+    font-size: 14px;
+    color: #65676B;
+    margin: 0;
+}
+
+.upload-subtext {
+    font-size: 12px;
+    color: #97999f;
+    margin: 0;
+}
+
+.image-upload-area:hover .upload-placeholder img {
+    opacity: 1;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox:hover {
+    background-color: rgba(19, 89, 145, 0.1);
+}
+
+.custom-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #135991;
+}
+
+.custom-checkbox input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #e4e6eb;
+    padding: 5px;
+    margin-right: 8px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: #135991;
+}
+
+/* Todo List Styles */
+.todo-container {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.todo-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.todo-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e4e6eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.todo-input:focus {
+    outline: none;
+    border-color: #799fbd;
+    box-shadow: 0 0 0 3px rgb(38 95 140 / 21%);
+}
+
+.add-todo-btn {
+    padding: 12px 24px;
+    background: #135991;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.add-todo-btn:hover {
+    background: transparent;
+    box-shadow: 0 0 0 3px rgba(19, 89, 145, 0.212);
+    transform: translateY(-2px);
+    color: #135991;
+}
+
+.add-todo-btn:active {
+    transform: translateY(0);
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid #e4e6eb;
+}
+
+.todo-item:hover {
+    transform: translateX(-8px);
+    border-color: #1877F2;
+    box-shadow: 2px 2px 8px rgba(24, 119, 242, 0.1);
+}
+
+.todo-item.dragging {
+    opacity: 0.5;
+    background: #f0f2f5;
+}
+
+.todo-drag-handle {
+    cursor: move;
+    padding: 8px;
+    color: #65676B;
+    margin-left: 10px;
+}
+
+.todo-drag-handle:hover {
+    color: #1877F2;
+}
+
+.todo-text {
+    flex: 1;
+    margin: 0 15px;
+    font-size: 16px;
+    color: #050505;
+}
+
+.todo-delete-btn {
+    background: transparent;
+    border: none;
+    color: #65676B;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.todo-delete-btn:hover {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.no-todos {
+    text-align: center;
+    color: #c3c5cb;
+    padding: 20px;
+}
+
+/* Common styles for both buttons */
+ .dialog-btn {
+    border-radius: 17px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: poppins;
+    min-width: 70px;
+}
+
+/* Send Button */
+  .send-btn {
+    background-color: #135991;
+    color: white;
+    border: 2px solid transparent;
+    transition: all 0.3s ease; 
+ } 
+.send-btn:active {
+    transform: scale(1.05);
+} 
+
+/* Cancel Button */
+ .cancel-btn {
+    background-color: transparent;
+    color: #135991;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    transform: scale(1.05);
+    color: red;
+    border: 2px solid #f06b6450;
+}
+
+.cancel-btn:active {
+    transform: scale(0.95); 
+}  
+
+/* Images Gallery Styles */
+.images-gallery {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid rgba(19, 89, 145, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+.gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(19, 89, 145, 0.1);
+}
+
+.gallery-title {
+    font-size: 18px;
+    color: #135991;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gallery-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.gallery-upload-btn {
+    background: transparent;
+    border: 2px dashed rgba(19, 89, 145, 0.2);
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #135991;
+}
+
+.gallery-upload-btn:hover {
+    border-color: #135991;
+    background: rgba(19, 89, 145, 0.05);
+    transform: translateY(-2px);
+}
+
+.gallery-image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.gallery-image-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(19, 89, 145, 0.15);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.gallery-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(19, 89, 145, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.gallery-image-container:hover .gallery-image-overlay {
+    opacity: 1;
+}
+
+.gallery-delete-btn {
+    background: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #dc3545;
+    transition: all 0.2s ease;
+    transform: scale(0.8);
+}
+
+.gallery-delete-btn:hover {
+    background: #dc3545;
+    color: white;
+    transform: scale(1);
+}
+
+.gallery-count {
+    background: rgba(19, 89, 145, 0.1);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #135991;
+}
+
+@media screen and (max-width: 768px) {
+    .butt-Diolog {
+        width: 252px;
+    }
+}
+@media screen and (max-width:400px) {
+    .boxDia-Profile {
+        width: 90%;
+    }
+    .boxDia {
+        width: 88%;
+    }
+    .dialog-buttons{
+        margin-top: -47px ;
+        padding: 24px 0;
+    }
+    .date-inputs {
+        flex-direction: column;
+    }
+    .todo-container {
+        padding: 3px;
+    }
+    .todo-input {
+        padding: 12px 4px
+    }
+    .send-btn {
+        font-size: 1.2rem;
+        padding: 4px;
+    }
+    .send-btn:hover {
+        font-size: 1.2rem;
+        padding: 4px;
+    }
+    .dialog-btn {
+        font-size: 17px;
+        min-width: 56px;
+    }
+}

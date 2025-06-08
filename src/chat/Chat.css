@@ -1,0 +1,57 @@
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    justify-items: center;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+.user-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    max-width: 200px;
+}
+.user-grid-item:hover {
+    transform: scale(1.08) rotate(-2deg);
+}
+.user-grid-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px #a1c4fd55;
+}
+.user-grid-name {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    color: #222;
+    font-weight: 500;
+    text-align: center;
+}
+.chat-container-main {
+    margin-top: 5px;
+    margin-right: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.chat-container {
+    /* margin: 5px 25px; */
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    width:inherit;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+@media screen and (max-width: 500px) {
+    .user-grid {
+    grid-template-columns: repeat(1, 1fr); 
+    }
+}

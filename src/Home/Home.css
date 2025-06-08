@@ -1,0 +1,371 @@
+.Publish{
+    box-shadow:none;
+    background-color: #ffffff;
+}
+.Publication{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 20px;
+}
+.Publication img {
+    border-radius: 55%;
+    width:50px ;
+    height:50px ;
+    border: 1px solid #000000;
+ } 
+
+
+.dialog-st{
+    width: 438px;
+    height: 47px;
+    border-radius: 15px;
+    background-color: #F0F2F5;
+    border: medium;
+    text-decoration: ltr;
+    text-align: end;
+}
+
+.HomeLi{
+    text-align: center;
+    margin-left:90px;
+}
+.buttomst{     
+        font-family: 'Poppins', sans-serif;   
+        font-size: 26px;
+        font-weight: 700;
+        color: #b9b9b9;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+}
+.buttomst:hover, .buttomst.active {
+    color: #135991;
+    line-height: 24px;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* Post Card Styles */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.post-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card.blue {
+    background-color: #DFEBFF;
+}
+
+.post-card.yellow {
+    background-color: #FFF5DF;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.post-user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #135991;
+}
+
+.post-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.post-user-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #111b21;
+    font-weight: 600;
+}
+
+.post-time {
+    color: #667781;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.post-content p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.post-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.post-image-item {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.post-image-item:hover {
+    transform: scale(1.05);
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 15px;
+}
+
+.post-action-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #667781;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.post-action-item:hover {
+    color: #135991;
+}
+
+.post-action-item.liked {
+    color: #FF0000; /* Red color for liked state */
+}
+
+.post-action-item.liked .post-action-icon {
+    color: #FF0000; /* Ensure icon also turns red */
+}
+
+.post-action-icon {
+    font-size: 1.3rem;
+}
+
+.post-view-count {
+    font-size: 0.9rem;
+    color: #667781;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1200px) {
+    .dialog-st {
+        width: 380px;
+    }
+    
+    .HomeLi {
+        margin-left: 70px;
+    }
+    
+    .buttomst {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .dialog-st {
+        width: 320px;
+        height: 42px;
+    }
+    
+    .HomeLi {
+        margin-left: 50px;
+    }
+    
+    .buttomst {
+        font-size: 22px;
+    }
+    
+    .Publication img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .post-card {
+        padding: 20px;
+    }
+
+    .post-user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .post-user-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .post-time {
+        font-size: 0.8rem;
+    }
+
+    .post-content p {
+        font-size: 0.95rem;
+    }
+
+    .post-image-item {
+        height: 80px;
+    }
+
+    .post-action-icon {
+        font-size: 1.2rem;
+    }
+
+    .post-view-count {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dialog-st {
+        width: 280px;
+        height: 40px;
+    }
+    
+    .HomeLi {
+        margin-left: 30px;
+    }
+    
+    .buttomst {
+        font-size: 20px;
+    }
+    
+    .Publication {
+        gap: 10px;
+    }
+    
+    .Publication img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .buttomst:hover, .buttomst.active {
+        text-underline-offset: 4px;
+    }
+
+    .post-card {
+        padding: 15px;
+    }
+
+    .post-user-avatar {
+        width: 45px;
+        height: 45px;
+    }
+
+    .post-user-info h3 {
+        font-size: 1rem;
+    }
+
+    .post-time {
+        font-size: 0.75rem;
+    }
+
+    .post-content p {
+        font-size: 0.9rem;
+    }
+
+    .post-image-item {
+        height: 70px;
+    }
+
+    .post-action-icon {
+        font-size: 1.1rem;
+    }
+
+    .post-action-item {
+        gap: 6px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .dialog-st {
+        width: 240px;
+        height: 38px;
+    }
+    
+    .HomeLi {
+        margin-left: 20px;
+    }
+    
+    .buttomst {
+        font-size: 18px;
+    }
+    
+    .Publication img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .buttomst:hover, .buttomst.active {
+        text-underline-offset: 3px;
+    }
+
+    .post-card {
+        padding: 12px;
+    }
+
+    .post-user-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .post-user-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .post-time {
+        font-size: 0.7rem;
+    }
+
+    .post-content p {
+        font-size: 0.85rem;
+    }
+
+    .post-images {
+        gap: 8px;
+    }
+
+    .post-image-item {
+        height: 60px;
+    }
+
+    .post-action-icon {
+        font-size: 1rem;
+    }
+
+    .post-action-item {
+        gap: 4px;
+    }
+}
