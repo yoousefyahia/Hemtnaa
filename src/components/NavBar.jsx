@@ -1,50 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import userImage from "../assets/Ellipse 5.png";
 import "../styles/NavBar.css";
-const NavBar = () => {
-  const [difficulty, setDifficulty] = useState("");
-  const [progress, setProgress] = useState(0);
+import { useState, useRef } from "react";
+
+const NavBar = ({ progress = 0, showProgress = true }) => {
   const navigate = useNavigate(); 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef();
 
-  useEffect(() => {
-    const fetchData = () => {
-      setTimeout(() => {
-        setDifficulty("سهل");
-        setProgress(30);
-      }, 1000);
-    };
-
-    fetchData();
-  }, []);
-
-  const getProgressColor = (level) => {
-    switch (level) {
-      case "سهل":
-        return "#24B600";
-      case "متوسط":
-        return "bg-warning";
-      case "صعب":
-        return "bg-danger";
-      default:
-        return "bg-secondary";
-    }
-  };
-
-  const handleChange = (level, value) => {
-    setDifficulty(level);
-    setProgress(value);
+  const getProgressColor = (progress) => {
+    if (progress < 40) return "#24B600";     // أخضر
+    if (progress < 75) return "#FFC107";     // أصفر
+    return "#DC3545";                         // أحمر
   };
 
   const handleProfileClick = () => {
-    navigate("/profile"); 
+    setDropdownOpen((open) => !open);
   };
 
+  const handleEditProfile = () => {
+    setDropdownOpen(false);
+    navigate("/profile");
+  };
+
+  const handleLogout = () => {
+    setDropdownOpen(false);
+    navigate("/");
+  };
+
+  // إغلاق القائمة عند الضغط خارجها
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
   return (
-    <nav className=" navbar-expand-lg navbar-light bg-light px-2">
-      <div className=" d-flex justify-content-between align-items-center">
-        {/* صورة اليوزر */}
-        <div className="d-flex align-items-center" onClick={handleProfileClick}>
+<nav className="navbar-container navbar-expand-lg navbar-light bg-light px-3">
+      <div className="d-flex justify-content-between align-items-center">
+        {/* صورة اليوزر مع القائمة المنسدلة */}
+        <div className="d-flex align-items-center position-relative" ref={dropdownRef}>
           <img
             src={userImage}
             alt="اليوزر"
@@ -52,48 +58,40 @@ const NavBar = () => {
             width="80"
             height="80"
             style={{ cursor: "pointer" }} 
+            onClick={handleProfileClick}
           />
-          <span className="ms-2">مرحبا</span>
+          {dropdownOpen && (
+            <div className="dropdown-menu show" style={{ position: 'absolute', top: '90%', left: 0, minWidth: 150, zIndex: 10000, boxShadow: '0 2px 12px #0002', borderRadius: 10, padding: 0 }}>
+              <button className="dropdown-item" style={{ width: '100%', textAlign: 'right', padding: '12px 18px', border: 'none', background: 'none' }} onClick={handleEditProfile}>
+                تعديل الملف الشخصي
+              </button>
+              <button className="dropdown-item text-danger" style={{ width: '100%', textAlign: 'right', padding: '12px 18px', border: 'none', background: 'none' }} onClick={handleLogout}>
+                تسجيل الخروج
+              </button>
+            </div>
+          )}
         </div>
-
         {/* المؤشر */}
+        {showProgress && (
         <div style={{ width: "180px", textAlign: "end" }}>
           <div className="progress">
             <div
-              className={`progress-bar ${getProgressColor(difficulty)}`}
+              className="progress-bar"
               role="progressbar"
-              style={{ width: `${progress}%`, backgroundColor: getProgressColor(difficulty) }}
+              style={{
+                width: `${progress}%`,
+                backgroundColor: getProgressColor(progress)
+              }}
               aria-valuenow={progress}
               aria-valuemin="0"
               aria-valuemax="100"
             ></div>
           </div>
           <small className="text-muted d-block mt-1">
-            المستوى: {difficulty || "جارٍ التحميل..."} <br />
-            نسبة الاكتمال: {progress}%
+            نسبة الاكتمال:% {progress}
           </small>
-
-          <div className="mt-2 d-flex gap-2 justify-content-end">
-            <button
-              className="btn btn-sm btn-outline-success"
-              onClick={() => handleChange("سهل", 30)}
-            >
-              سهل
-            </button>
-            <button
-              className="btn btn-sm btn-outline-warning"
-              onClick={() => handleChange("متوسط", 60)}
-            >
-              متوسط
-            </button>
-            <button
-              className="btn btn-sm btn-outline-danger"
-              onClick={() => handleChange("صعب", 90)}
-            >
-              صعب
-            </button>
-          </div>
         </div>
+        )}
       </div>
     </nav>
   );

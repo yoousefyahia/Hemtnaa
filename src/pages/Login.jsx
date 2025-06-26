@@ -64,23 +64,19 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)} 
           />
-          {errors.email && <p className="error">{errors.email}</p>}
-
           <input 
             type="password" 
             placeholder="كلمة المرور" 
             value={password}
             onChange={(e) => setPassword(e.target.value)} 
           />
-          {errors.password && <p className="error">{errors.password}</p>}
 
-       <div className="remember-forgot">
-  <label style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-    <input type="checkbox" /> تذكرني
-  </label>
-  <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
-</div>
-
+          <div className="remember-forgot">
+            <label style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <input type="checkbox" /> تذكرني
+            </label>
+            <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
+          </div>
 
           <button type="submit" className="login-btn">تسجيل الدخول</button>
         </form>

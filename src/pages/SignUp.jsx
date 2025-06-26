@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Toast, ToastContainer } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css';
 import hemtna from "../assets/Hemtnaa.png";
-import "../styles/sign.css"
+import "../styles/sign.css";
+
 function SignUp() {
   const [step, setStep] = useState(1);
+  const [showToast, setShowToast] = useState(false); 
   const [formData, setFormData] = useState({
     userType: '',
     firstName: '',
@@ -38,7 +40,7 @@ function SignUp() {
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "من فضلك أدخل بريد إلكتروني صحيح";
     if (!formData.phone) newErrors.phone = "من فضلك أدخل رقم الهاتف";
     if (!formData.birthDate) newErrors.birthDate = "من فضلك اختر تاريخ الميلاد";
-    if (!formData.childProblem) newErrors.childProblem = "من فضلك اختر مشكلة الطفل";
+    if (!formData.childProblem) newErrors.childProblem = formData.userType === "doctor" ? "من فضلك اختر تخصص الطبيب" : "من فضلك اختر مشكلة الطفل";
     if (!formData.password) newErrors.password = "من فضلك أدخل كلمة المرور";
     if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "كلمة المرور وتأكيد كلمة المرور غير متطابقين";
 
@@ -48,18 +50,27 @@ function SignUp() {
 
   const handleSubmit = () => {
     if (validate()) {
-      alert('تم التسجيل!');
+      setShowToast(true);
     }
   };
 
   return (
     <Container className="mt-5 p-4 rounded" style={{ backgroundColor: '#fff', maxWidth: '600px' }}>
+      
+      {/*  Toast Message */}
+      <ToastContainer position="top-center" className="p-3">
+        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="success">
+          <Toast.Body className="text-white text-center fw-bold">تم التسجيل بنجاح </Toast.Body>
+        </Toast>
+      </ToastContainer>
+
       <div className="text-center mb-4">
         <img src={hemtna} alt="الشعار" className="home-image" />
         <h2 className="fw-bold text-primary">التسجيل</h2>
         <p className="text-muted">يرجى إدخال بياناتك</p>
       </div>
 
+      {/* Step Indicator */}
       <div className="d-flex justify-content-center mb-4">
         <div className="d-flex align-items-center">
           <div className={`rounded-circle border ${step === 1 ? 'bg-primary text-white' : ''}`} style={{ width: 25, height: 25, textAlign: 'center' }}>1</div>
@@ -82,7 +93,20 @@ function SignUp() {
             <option value="senior">طفل</option>
           </Form.Select>
           {errors.userType && <div className="text-danger">{errors.userType}</div>}
-          <Button className="w-100" onClick={nextStep}>التالي</Button>
+
+          <Button
+            className="w-100"
+            onClick={() => {
+              if (!formData.userType) {
+                setErrors({ userType: "من فضلك اختر نوع المستخدم" });
+              } else {
+                setErrors({});
+                nextStep();
+              }
+            }}
+          >
+            التالي
+          </Button>
         </>
       )}
 
@@ -132,16 +156,23 @@ function SignUp() {
               <Form.Control type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} className="mb-3" dir="rtl" />
               {errors.birthDate && <div className="text-danger">{errors.birthDate}</div>}
             </Col>
-            <Col md={6}>
-              <Form.Select name="childProblem" value={formData.childProblem} onChange={handleChange} className="mb-3" dir="rtl">
-                <option value="" disabled hidden>مشكلة الطفل</option>
-                <option value="autism">التوحد</option>
-                <option value="adhd">ADHD(فرط حركه)</option>
-                <option value="hearing">صعوبة السمع</option>
-                <option value="speech">صعوبة التكلم</option>
-              </Form.Select>
-              {errors.childProblem && <div className="text-danger">{errors.childProblem}</div>}
-            </Col>
+           <Col md={6}>
+  <Form.Control
+    type="text"
+    name="childProblem"
+    value={formData.childProblem}
+    onChange={handleChange}
+    placeholder={
+      formData.userType === "doctor"
+        ? "اكتب تخصص الطبيب"
+        : "اكتب مشكلة الطفل"
+    }
+    className="mb-3"
+    dir="rtl"
+  />
+  {errors.childProblem && <div className="text-danger">{errors.childProblem}</div>}
+</Col>
+
           </Row>
 
           <Form.Control

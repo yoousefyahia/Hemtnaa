@@ -32,8 +32,10 @@
 /* للشاشات الصغيرة */
 @media (max-width: 576px) {
   .step-indicator-wrapper {
-    width: 60px;
+    width: 70px;
     margin: 0 8px;
+      height: 6px; 
+
   }
   
   .step-indicator {

@@ -17,7 +17,6 @@ const EditProfile = () => {
   
   const [formData, setFormData] = useState({
     firstName: "",
-    middleName: "",
     lastName: "",
     email: "",
     password: "",
@@ -35,7 +34,6 @@ const EditProfile = () => {
     if (currentProfile) {
       setFormData({
         firstName: currentProfile.firstName || "يوسف",
-        middleName: currentProfile.middleName || "يحيى",
         lastName: currentProfile.lastName || "السيد",
         email: currentProfile.email || "amrhemdan563@gmail.com",
         password: "0000000",
@@ -167,7 +165,7 @@ const EditProfile = () => {
           <form onSubmit={handleSubmit}>
             {/* حقول الاسم */}
             <div className="row mb-3">
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <label className="form-label fw-bold">الاسم الأول</label>
                 <input
                   type="text"
@@ -179,18 +177,7 @@ const EditProfile = () => {
                   style={{ backgroundColor: "#fff" }}
                 />
               </div>
-              <div className="col-md-4">
-                <label className="form-label">الاسم الأوسط</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="middleName"
-                  value={formData.middleName}
-                  onChange={handleChange}
-                  style={{ backgroundColor: "#fff" }}
-                />
-              </div>
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <label className="form-label">الاسم الأخير</label>
                 <input
                   type="text"

@@ -1,10 +1,12 @@
 
 .navbar-container {
-    background-color: #f8f9fa;
-    padding: 10px 15px;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  /* border-bottom: 1px solid #dee2e6; */
+  box-shadow: 0 1px 10px  #45423a ;
+  border-radius: 8px;
+}
+
   .navbar-content {
     display: flex;
     justify-content: space-between;
@@ -20,8 +22,6 @@
   }
   
   .user-img {
-    width: 60px;
-    height: 60px;
     border-radius: 50%;
   }
   
