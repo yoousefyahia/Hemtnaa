@@ -66,6 +66,7 @@ const Activity = ({ activityProgress, setActivityProgress }) => {
       ))}
       <button style={{
         marginTop: 16,
+        marginBottom: 56,
         background: '#1976d2',
         color: '#fff',
         border: 'none',
