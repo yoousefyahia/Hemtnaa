@@ -2,34 +2,16 @@ import React, { useRef, useState } from "react";
 import { FaStar, FaEdit, FaSave, FaGraduationCap, FaCertificate, FaPhone, FaUser, FaTrash } from "react-icons/fa";
 import './Profile.css';
 import { FiAlignRight } from "react-icons/fi";
-import Dialog from '../Home/Dialog';
 import { createPortal } from 'react-dom';
-
+// import [use]
 const DeleteModal = ({ show, onConfirm, onCancel }) => {
   if (!show) return null;
 
   return createPortal(
-    <div className="custom-modal-overlay" onClick={(e) => {
-      // Prevent clicks on overlay from propagating to dialog or other elements
-      e.stopPropagation();
-      // onCancel(); // Optionally close modal when clicking outside
-    }}>
-      <div className="custom-modal" onClick={(e) => e.stopPropagation()}>
-        <h3>تسجيل خروج</h3>
-        <p>هل انت متأكد من تسجيل الخروج ؟</p>
-        <div className="modal-icon">
-          <svg className="icon-triangle" width="110" height="110" viewBox="0 0 110 110">
-            <polygon
-              points="20,95 55,25 90,95 20,95"
-              fill="none"
-              stroke="#2196f3" /* Changed to blue */
-              strokeWidth="4"
-              strokeLinejoin="round"
-              className="triangle-animated"
-            />
-          </svg>
-          <span className="icon-exclamation">!</span>
-        </div>
+    <div className="custom-modal-overlay" onClick={onCancel}>
+      <div className="custom-modal" onClick={e => e.stopPropagation()}>
+        <h3>حذف الحساب</h3>
+        <p>هل أنت متأكد أنك تريد حذف الحساب؟ لا يمكن التراجع عن هذه العملية.</p>
         <div className="modal-actions">
           <button className="modal-btn yes" onClick={onConfirm}>نعم</button>
           <button className="modal-btn no" onClick={onCancel}>لا</button>
@@ -84,9 +66,7 @@ const Profile = () => {
     }));
   };
 
-  const handleDeleteAccount = () => {
-    setShowDeleteModal(true);
-  };
+  const handleDeleteAccount = () => setShowDeleteModal(true);
 
   const confirmDeleteAccount = () => {
     console.log('Account deletion requested');
@@ -97,9 +77,7 @@ const Profile = () => {
     // window.location.href = '/login';
   };
 
-  const cancelDeleteAccount = () => {
-    setShowDeleteModal(false);
-  };
+  const cancelDeleteAccount = () => setShowDeleteModal(false);
 
   const handleNewPost = (newPost) => {
     console.log('New post created:', newPost);
@@ -140,7 +118,7 @@ const Profile = () => {
           <div className="profile-header">
             <div className="profile-image-container">
               <img 
-                src={require('../Rinning/722f837b-b9db-4ef6-94bd-24b66670206a-removebg-preview.png')} 
+                src={require('../nav/84c1b0d51403f4f1d7e9bd56b7c704bb2bf992e9.jpg')} 
                 alt="Doctor Profile" 
                 className="profile-image"
               />
@@ -261,10 +239,8 @@ const Profile = () => {
             </button>
             <button 
               onClick={handleDeleteAccount}
-              className="delete-account-btn"
-            >
-              <FaTrash />
-              حذف الحساب
+              className="delete-account-btn">
+              تسجيل خروج 
             </button>
           </div>
 

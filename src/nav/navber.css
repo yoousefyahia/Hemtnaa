@@ -10,32 +10,38 @@
     z-index: 1000;
 }
 .iconSide-content{
-    display: flex;
+        display: flex;
         align-self: center;
         flex-direction: column;
         align-items: center;
 }
 .inconH{
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
     color: #5E5E5E;
 }
 .img-center p {
-    font-size: 15px;
+    font-size: 20px;
     font-family: poppins;
     width: 400;
     color: #5E5E5E;
     margin-top: 4px;
     transition: all 0.3s ease;
 }
+.incon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .img-center:hover,
 .img-center.active {
     background-color: rgba(19, 89, 145, 0.1);
-    padding: 0 25%;
+    padding: 0  30%;
     border-left: 3px solid #135991;
 }
 
 .img-center:hover .inconH,
+.img-center:hover p,
 .img-center.active .inconH,
 .img-center.active p {
     color: #135991;
@@ -44,10 +50,12 @@
 a:link {
     text-decoration: none;
 }
+
+/* looooogooooooooo */
 .imgLoge img {
     object-fit: contain;
-    width: 90px;
-    height: 80px;
+    width: 120px;
+    height: 110px;
     margin-right: 10px;
     background-color: transparent;
 }
@@ -117,8 +125,8 @@ a:link {
 }
 
 .butt-DiologProfile svg {
-    width: 24px;
-    height: 24px;
+    width: 35px;
+    height: 35px;
     transition: all 0.3s ease;
 }
 
@@ -158,6 +166,7 @@ a:link {
     }
 
     .img-center:hover .inconH,
+    .img-center:hover p,
     .img-center.active .inconH,
     .img-center.active p {
         color: #135991;

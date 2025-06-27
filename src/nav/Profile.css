@@ -55,7 +55,7 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 6px;
     border-bottom: 1px solid #eee;
     flex-direction: row-reverse;
 }
@@ -120,18 +120,13 @@
     margin: 0;
 }
 
-.profile-details {
-    margin-top: 20px;
-}
-
 .detail-item {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 12px;
+    padding:  3PX 12px;
     background: #f8f9fa;
     border-radius: 8px;
-    margin-bottom: 10px;
     transition: all 0.3s ease;
     flex-direction: row;
 }
