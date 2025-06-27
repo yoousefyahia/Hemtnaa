@@ -1,13 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
-import userImage from "../assets/Ellipse 5.png";
+import { useUser } from "./UserContext";
 import "../styles/NavBar.css";
 import { useState, useRef } from "react";
+import logo from "../assets/Hemtnaa.png";
 
-const NavBar = ({ progress = 0, showProgress = true }) => {
+const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, activeTab }) => {
   const navigate = useNavigate(); 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef();
+  const { user } = useUser();
 
   const getProgressColor = (progress) => {
     if (progress < 40) return "#24B600";     // أخضر
@@ -48,11 +50,15 @@ const NavBar = ({ progress = 0, showProgress = true }) => {
 
   return (
 <nav className="navbar-container navbar-expand-lg navbar-light bg-light px-3">
-      <div className="d-flex justify-content-between align-items-center">
+      <div className={`d-flex justify-content-between align-items-center w-100 ${reverseLayout ? 'flex-row-reverse' : ''}`}>
+        {/* شعار اللوجو في أقصى اليمين */}
+        {activeTab !== 'games' && activeTab !== 'activities' && (
+          <img src={logo} alt="شعار الموقع" style={{ height: "60px", marginRight: 16 }} />
+        )}
         {/* صورة اليوزر مع القائمة المنسدلة */}
         <div className="d-flex align-items-center position-relative" ref={dropdownRef}>
           <img
-            src={userImage}
+            src={user.profileImage}
             alt="اليوزر"
             className="user rounded-circle"
             width="80"

@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/Hemtnaa.png";
 import icon1 from "../assets/Group 3.png";
 import icon2 from "../assets/Group 2.png";
-import icon3 from "../assets/Ellipse 5.png";
-import profileHeader from "../assets/Group 1000005390.png";
+import icon3 from "../assets/Ellipse 8.png";
+import { useUser } from "../components/UserContext";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "../styles/EditProfile.css";
@@ -13,8 +13,8 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const currentProfile = location.state?.currentProfile || {};
-  
+  const { user, updateUser } = useUser();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -28,23 +28,22 @@ const EditProfile = () => {
   });
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [profileImage, setProfileImage] = useState(profileHeader);
+  const [profileImage, setProfileImage] = useState(user.profileImage);
 
   useEffect(() => {
-    if (currentProfile) {
-      setFormData({
-        firstName: currentProfile.firstName || "يوسف",
-        lastName: currentProfile.lastName || "السيد",
-        email: currentProfile.email || "amrhemdan563@gmail.com",
-        password: "0000000",
-        country: currentProfile.country || "مصر",
-        phone: currentProfile.phone || "+20 1078544486",
-        education: currentProfile.education || "بكالوريوس",
-        experience: currentProfile.experience || "5 سنوات",
-        birthDate: currentProfile.birthDate || "2023-03-07"
-      });
-    }
-  }, [currentProfile]);
+    setFormData({
+      firstName: user.firstName || "يوسف",
+      lastName: user.lastName || "السيد",
+      email: user.email || "amrhemdan563@gmail.com",
+      password: user.password || "0000000",
+      country: user.country || "مصر",
+      phone: user.phone || "+20 1078544486",
+      education: user.education || "بكالوريوس",
+      experience: user.experience || "5 سنوات",
+      birthDate: user.birthDate || "2010-01-01"
+    });
+    setProfileImage(user.profileImage);
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,20 +56,19 @@ const EditProfile = () => {
   const handlePhoneChange = (value) => {
     setFormData(prev => ({
       ...prev,
-      phone: value
+      phone: value ? value.replace(/\s+/g, '') : ''
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/profile", { 
-      state: { 
-        updatedProfile: {
-          ...formData,
-          birthDate: formatDate(formData.birthDate)
-        } 
-      } 
+    updateUser({
+      ...formData,
+      phone: formData.phone ? formData.phone.replace(/\s+/g, '') : '',
+      profileImage,
+      birthDate: formData.birthDate
     });
+    navigate("/profile");
   };
 
   const formatDate = (dateString) => {
@@ -103,9 +101,9 @@ const EditProfile = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{ padding: "20px 20px" }}>
         <div className="container-fluid justify-content-start ps-0">
           <div className="d-flex align-items-center gap-3">
-            <img src={icon1} alt="أيقونة 1" width="45" height="45" style={{ objectFit: "contain" }} />
-            <img src={icon2} alt="أيقونة 2" width="45" height="45" style={{ objectFit: "contain" }} />
-            <img src={icon3} alt="أيقونة 3" width="45" height="45" style={{ objectFit: "contain" }} />
+            {/* <img src={icon1} alt="أيقونة 1" width="45" height="45" style={{ objectFit: "contain" }} /> */}
+            {/* <img src={icon2} alt="أيقونة 2" width="45" height="45" style={{ objectFit: "contain" }} /> */}
+            <img src={user.profileImage} alt="صورة المستخدم" width="45" height="45" style={{ objectFit: "cover", borderRadius: "50%" }} />
           </div>
         </div>
       </nav>
@@ -126,7 +124,8 @@ const EditProfile = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            cursor: "pointer" 
+            cursor: "pointer",
+            position: "relative"
           }}
           onClick={() => document.getElementById('profileImageInput').click()}
         >
@@ -139,8 +138,35 @@ const EditProfile = () => {
               objectFit: "cover"
             }}
           />
+          {/* أيقونة الكاميرا */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "8px",
+              left: "8px",
+              background: "#fff",
+              borderRadius: "50%",
+              width: "32px",
+              height: "32px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
+              border: "1px solid #ddd"
+            }}
+            onClick={e => {
+              e.stopPropagation();
+              document.getElementById('profileImageInput').click();
+            }}
+          >
+            {/* SVG أيقونة كاميرا */}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="13" r="3.2" stroke="#333" strokeWidth="1.5"/>
+              <rect x="2.75" y="6.75" width="18.5" height="13.5" rx="3.25" stroke="#333" strokeWidth="1.5"/>
+              <path d="M7 6V5.5C7 4.11929 8.11929 3 9.5 3H14.5C15.8807 3 17 4.11929 17 5.5V6" stroke="#333" strokeWidth="1.5"/>
+            </svg>
+          </div>
         </div>
-
         {/*  اختيار صورة جديدة */}
         <input
           type="file"
@@ -241,8 +267,9 @@ const EditProfile = () => {
                   defaultCountry="EG"
                   value={formData.phone}
                   onChange={handlePhoneChange}
-                  className="form-control"
+                  className="form-control phone-input-ltr"
                   required
+                  dir="ltr"
                 />
               </div>
             </div>
@@ -257,7 +284,8 @@ const EditProfile = () => {
                   value={formData.education}
                   onChange={handleChange}
                   required
-                  style={{ backgroundColor: "#fff" }}
+                  dir="rtl"
+                  style={{ backgroundColor: "#fff", textAlign: 'right' }}
                 >
                   <option value="بكالوريوس">حضانه</option>
                   <option value="دبلوم">ابتدائئ</option>
@@ -291,6 +319,18 @@ const EditProfile = () => {
             </div>
           </form>
         </div>
+      </div>
+
+      {/* زر الرجوع */}
+      <div className="container" style={{ maxWidth: '600px', marginTop: '20px' }}>
+        <button
+          type="button"
+          className="custom-back-btn mb-3"
+          onClick={() => navigate('/profile')}
+        >
+          <svg style={{marginLeft: 8}} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 19L8 12L15 5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          رجوع إلى البروفايل
+        </button>
       </div>
     </div>
   );

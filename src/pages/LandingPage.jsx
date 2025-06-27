@@ -33,7 +33,12 @@ const LandingPage = () => {
       <Sidebar setActiveTab={setActiveTab} />
       
       <div className="flex-fill landing-page-content">
-        <NavBar progress={navProgress} showProgress={activeTab === 'activities' || activeTab === 'games'} />
+        <NavBar 
+          progress={navProgress} 
+          showProgress={activeTab === 'activities' || activeTab === 'games'} 
+          reverseLayout={activeTab === 'home' || activeTab === 'chat'}
+          activeTab={activeTab}
+        />
         <MainContent activeTab={activeTab} activityProgress={activityProgress} setActivityProgress={setActivityProgress} />
       </div>
     </div>

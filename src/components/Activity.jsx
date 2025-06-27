@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import ActivityCard from './ActivityCard';
 
+const now = Date.now();
 const activities = [
   {
     id: 1,
-    title: 'اكل الطفل الطعام كامل',
-    timeLeft: '2 ساعات',
-    description: 'شرح هذا النشاط هو ان يقوم الطفل بالأكل الطعام كامل',
-    image: 'https://img.freepik.com/free-photo/tree-blue-sky_1150-11129.jpg?w=200',
+    title: 'تناول وجبة صحية',
+    description: 'يجب على الطفل تناول وجبة غنية بالخضروات والفواكه.',
+    image: 'https://img.freepik.com/free-photo/healthy-food-kids_23-2148723456.jpg?w=200',
     checked: true,
+    endTime: now + 2 * 60 * 60 * 1000,
   },
   {
     id: 2,
-    title: 'اكل الطفل الطعام كامل',
-    timeLeft: '2 ساعات',
-    description: 'شرح هذا النشاط هو ان يقوم الطفل بالأكل الطعام كامل',
-    image: 'https://img.freepik.com/free-photo/tree-blue-sky_1150-11129.jpg?w=200',
+    title: 'ممارسة الرياضة',
+    description: 'ممارسة نشاط رياضي لمدة 30 دقيقة مثل الجري أو ركوب الدراجة.',
+    image: 'https://img.freepik.com/free-photo/kids-running-park_1150-11085.jpg?w=200',
     checked: true,
+    endTime: now + 2 * 60 * 60 * 1000 + 10 * 60 * 1000,
   },
   {
     id: 3,
-    title: 'اكل الطفل الطعام كامل',
-    timeLeft: '2 ساعات',
-    description: 'شرح هذا النشاط هو ان يقوم الطفل بالأكل الطعام كامل',
-    image: 'https://img.freepik.com/free-photo/tree-blue-sky_1150-11129.jpg?w=200',
+    title: 'قراءة قصة',
+    description: 'قراءة قصة قصيرة مع أحد أفراد العائلة.',
+    image: 'https://img.freepik.com/free-photo/mother-reading-book-her-daughter_23-2148234567.jpg?w=200',
     checked: false,
+    endTime: now + 2 * 60 * 60 * 1000 + 20 * 60 * 1000,
   },
   {
     id: 4,
-    title: 'اكل الطفل الطعام كامل',
-    timeLeft: '2 ساعات',
-    description: 'شرح هذا النشاط هو ان يقوم الطفل بالأكل الطعام كامل',
-    image: 'https://img.freepik.com/free-photo/tree-blue-sky_1150-11129.jpg?w=200',
+    title: 'رسم لوحة فنية',
+    description: 'استخدم الألوان لرسم لوحة تعبر عن مشاعرك اليوم.',
+    image: 'https://img.freepik.com/free-photo/kid-drawing-colorful-paint_1150-11234.jpg?w=200',
     checked: false,
+    endTime: now + 2 * 60 * 60 * 1000 + 30 * 60 * 1000,
   },
 ];
 
@@ -51,13 +52,32 @@ const Activity = ({ activityProgress, setActivityProgress }) => {
     );
   };
 
+  // دالة لحساب الوقت المتبقي كنص
+  const getTimeLeftString = (endTime) => {
+    const diff = Math.max(0, endTime - Date.now());
+    const totalMinutes = Math.floor(diff / 60000);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    if (diff <= 0) return 'انتهى الوقت';
+    if (hours > 0) return `${hours} ساعة${hours > 1 ? '' : ''} و${minutes} دقيقة`;
+    return `${minutes} دقيقة`;
+  };
+
+  // إعادة رسم كل دقيقة لتحديث الوقت المتبقي
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActivityList(list => [...list]); // إعادة رسم فقط
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       {activityList.map((activity) => (
         <ActivityCard
           key={activity.id}
           title={activity.title}
-          timeLeft={activity.timeLeft}
+          timeLeft={getTimeLeftString(activity.endTime)}
           description={activity.description}
           image={activity.image}
           checked={activity.checked}
