@@ -96,7 +96,7 @@ const Profile = () => {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <h6 className="fw-bold">التعليم</h6>
-                  <p>{profile.education}</p>
+                  <p>{profile.education && profile.education.trim() !== "" ? profile.education : "حضانه"}</p>
                 </div>
                 {/* <div className="col-md-6 mb-3">
                   <h6 className="fw-bold">الخبرة</h6>

@@ -8,7 +8,7 @@ const defaultProfile = {
   password: "0000000",
   country: "مصر",
   phone: "+201078544486",
-  education: "بكالوريوس",
+  education: "حضانه",
   experience: "5 سنوات",
   birthDate: "2010-01-01",
   profileImage: profileHeader,

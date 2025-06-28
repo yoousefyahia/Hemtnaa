@@ -6,6 +6,12 @@ import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css';
 import hemtna from "../assets/Hemtnaa.png";
 import "../styles/sign.css";
+import DatePicker, { registerLocale } from "react-datepicker";
+import ar from "date-fns/locale/ar";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import "react-datepicker/dist/react-datepicker.css";
+
+registerLocale("ar", ar);
 
 function SignUp() {
   const [step, setStep] = useState(1);
@@ -153,7 +159,42 @@ function SignUp() {
 
           <Row>
             <Col md={6}>
-              <Form.Control type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} className="mb-3" dir="rtl" />
+              <div className="w-100" style={{ position: "relative" }}>
+                <DatePicker
+                  selected={formData.birthDate ? new Date(formData.birthDate) : null}
+                  onChange={date => setFormData({ ...formData, birthDate: date ? date.toISOString().split('T')[0] : '' })}
+                  placeholderText="يوم/شهر/سنة"
+                  dateFormat="dd/MM/yyyy"
+                  locale="ar"
+                  calendarStartDay={6}
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  isClearable
+                  popperPlacement="bottom"
+                  name="birthDate"
+                  id="birthDate"
+                  calendarClassName="datepicker-rtl"
+                  customInput={
+                    <input
+                      className="form-control mb-3"
+                      style={{ paddingLeft: "2.5rem", direction: "rtl", textAlign: "right", width: "100%" }}
+                      placeholder="يوم/شهر/سنة"
+                      dir="rtl"
+                    />
+                  }
+                />
+                <FaRegCalendarAlt
+                  style={{
+                    position: "absolute",
+                    left: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    color: "#888",
+                    pointerEvents: "none"
+                  }}
+                />
+              </div>
               {errors.birthDate && <div className="text-danger">{errors.birthDate}</div>}
             </Col>
            <Col md={6}>

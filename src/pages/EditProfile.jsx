@@ -8,6 +8,12 @@ import { useUser } from "../components/UserContext";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "../styles/EditProfile.css";
+import DatePicker, { registerLocale } from "react-datepicker";
+import ar from "date-fns/locale/ar";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import "react-datepicker/dist/react-datepicker.css";
+
+registerLocale("ar", ar);
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -38,7 +44,7 @@ const EditProfile = () => {
       password: user.password || "0000000",
       country: user.country || "مصر",
       phone: user.phone || "+20 1078544486",
-      education: user.education || "بكالوريوس",
+      education: user.education || "حضانه",
       experience: user.experience || "5 سنوات",
       birthDate: user.birthDate || "2010-01-01"
     });
@@ -278,38 +284,59 @@ const EditProfile = () => {
             <div className="row mb-3">
               <div className="col-md-6">
                 <label className="form-label fw-bold">المستوى التعليمي</label>
-                <select
-                  className="form-select"
+                <input
+                  type="text"
+                  className="form-control"
                   name="education"
                   value={formData.education}
                   onChange={handleChange}
                   required
                   dir="rtl"
                   style={{ backgroundColor: "#fff", textAlign: 'right' }}
-                >
-                  <option value="بكالوريوس">حضانه</option>
-                  <option value="دبلوم">ابتدائئ</option>
-                  <option value="ماجستير">اعدادي</option>
-                                    <option value="ماجستير">ثانوي</option>
-                  <option value="ماجستير">جامعي</option>
-
-                </select>
+                  placeholder="مثال: بكالوريوس، دبلوم، ماجستير ..."
+                />
               </div>
-            
             </div>
 
             {/* تاريخ الميلاد */}
             <div className="mb-3">
               <label className="form-label">تاريخ الميلاد</label>
-              <input
-                type="date"
-                className="form-control"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleChange}
-                required
-                style={{ backgroundColor: "#fff" }}
-              />
+              <div className="w-100" style={{ position: "relative" }}>
+                <DatePicker
+                  selected={formData.birthDate ? new Date(formData.birthDate) : null}
+                  onChange={date => handleChange({ target: { name: 'birthDate', value: date ? date.toISOString().split('T')[0] : '' } })}
+                  placeholderText="يوم/شهر/سنة"
+                  dateFormat="dd/MM/yyyy"
+                  locale="ar"
+                  calendarStartDay={6}
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  isClearable
+                  popperPlacement="bottom"
+                  name="birthDate"
+                  id="birthDate"
+                  calendarClassName="datepicker-rtl"
+                  customInput={
+                    <input
+                      className="form-control"
+                      style={{ paddingLeft: "2.5rem", direction: "rtl", textAlign: "right", width: "100%" }}
+                      placeholder="يوم/شهر/سنة"
+                      dir="rtl"
+                    />
+                  }
+                />
+                <FaRegCalendarAlt
+                  style={{
+                    position: "absolute",
+                    left: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    color: "#888",
+                    pointerEvents: "none"
+                  }}
+                />
+              </div>
             </div>
 
             <div className="text-center">
