@@ -17,6 +17,8 @@ const ForgetPassword = () => {
               type="email"
               className="form-control form-control-lg"
               placeholder="أدخل بريدك الإلكتروني"
+              dir="rtl"
+              style={{ textAlign: 'right' }}
             />
           </div>
           <button type="submit" className="btn btn-primary btn-lg w-100">

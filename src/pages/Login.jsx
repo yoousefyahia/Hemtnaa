@@ -62,13 +62,17 @@ const Login = () => {
             type="email" 
             placeholder="البريد الإلكتروني" 
             value={email}
-            onChange={(e) => setEmail(e.target.value)} 
+            onChange={(e) => setEmail(e.target.value)}
+            dir="rtl"
+            style={{ textAlign: 'right' }}
           />
           <input 
             type="password" 
             placeholder="كلمة المرور" 
             value={password}
-            onChange={(e) => setPassword(e.target.value)} 
+            onChange={(e) => setPassword(e.target.value)}
+            dir="rtl"
+            style={{ textAlign: 'right' }}
           />
 
           <div className="remember-forgot">
