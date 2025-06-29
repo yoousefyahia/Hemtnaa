@@ -120,11 +120,27 @@ function SignUp() {
         <>
           <Row>
             <Col>
-              <Form.Control name="firstName" placeholder="الاسم الاخير" value={formData.firstName} onChange={handleChange} className="mb-3" dir="rtl" />
+              <Form.Control 
+                name="firstName" 
+                placeholder="الاسم الاخير" 
+                value={formData.firstName} 
+                onChange={handleChange} 
+                className="mb-3" 
+                dir="rtl"
+                style={{ textAlign: 'right', direction: 'rtl' }}
+              />
               {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
             </Col>
             <Col>
-              <Form.Control name="lastName" placeholder="الاسم الاول" value={formData.lastName} onChange={handleChange} className="mb-3" dir="rtl" />
+              <Form.Control 
+                name="lastName" 
+                placeholder="الاسم الاول" 
+                value={formData.lastName} 
+                onChange={handleChange} 
+                className="mb-3" 
+                dir="rtl"
+                style={{ textAlign: 'right', direction: 'rtl' }}
+              />
               {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
             </Col>
           </Row>
@@ -139,6 +155,7 @@ function SignUp() {
                 onChange={handleChange}
                 className="mb-3"
                 dir="rtl"
+                style={{ textAlign: 'right', direction: 'rtl' }}
               />
               {errors.email && <div className="text-danger">{errors.email}</div>}
             </Col>
@@ -210,6 +227,7 @@ function SignUp() {
     }
     className="mb-3"
     dir="rtl"
+    style={{ textAlign: 'right', direction: 'rtl' }}
   />
   {errors.childProblem && <div className="text-danger">{errors.childProblem}</div>}
 </Col>
@@ -224,6 +242,7 @@ function SignUp() {
             onChange={handleChange}
             className="mb-3"
             dir="rtl"
+            style={{ textAlign: 'right', direction: 'rtl' }}
           />
           {errors.password && <div className="text-danger">{errors.password}</div>}
 
@@ -235,6 +254,7 @@ function SignUp() {
             onChange={handleChange}
             className="mb-3"
             dir="rtl"
+            style={{ textAlign: 'right', direction: 'rtl' }}
           />
           {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
 

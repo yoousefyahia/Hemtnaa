@@ -21,6 +21,22 @@
   top: 15px;
 }
 
+/* RTL styling for form controls */
+.form-control {
+  direction: rtl;
+  text-align: right;
+}
+
+.form-control::placeholder {
+  direction: rtl;
+  text-align: right;
+}
+
+.form-select {
+  direction: rtl;
+  text-align: right;
+}
+
 /* للشاشات المتوسطة */
 @media (max-width: 768px) {
   .step-indicator-wrapper {
