@@ -334,9 +334,19 @@
   padding: 10px 16px;
   font-size: 16px;
   outline: none;
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: bidi-override;
 }
+
 .message-input:focus {
     border-color: #3b82f6;
+}
+
+.message-input::placeholder {
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: bidi-override;
 }
 
 .send-btn {

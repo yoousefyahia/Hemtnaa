@@ -10,6 +10,8 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ar from "date-fns/locale/ar";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import "react-datepicker/dist/react-datepicker.css";
+import { Route } from 'react-router-dom';
+import ForgetPassword from './ForgetPassword';
 
 registerLocale("ar", ar);
 
@@ -120,17 +122,18 @@ function SignUp() {
         <>
           <Row>
             <Col>
-              <Form.Control name="firstName" placeholder="الاسم الاخير" value={formData.firstName} onChange={handleChange} className="mb-3" dir="rtl" />
+              <Form.Control name="firstName" placeholder="الاسم الاخير" value={formData.firstName} onChange={handleChange} className="mb-3" dir="rtl" style={{ textAlign: 'right' }} />
               {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
             </Col>
             <Col>
-              <Form.Control name="lastName" placeholder="الاسم الاول" value={formData.lastName} onChange={handleChange} className="mb-3" dir="rtl" />
+              <Form.Control name="lastName" placeholder="الاسم الاول" value={formData.lastName} onChange={handleChange} className="mb-3" dir="rtl" style={{ textAlign: 'right' }} />
               {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
             </Col>
           </Row>
 
           <Row>
             <Col md={12}>
+              <label className="form-label fs-5" style={{ display: "block", textAlign: "right" }}>البريد الإلكتروني</label>
               <Form.Control 
                 type="email"
                 name="email"
@@ -139,6 +142,7 @@ function SignUp() {
                 onChange={handleChange}
                 className="mb-3"
                 dir="rtl"
+                style={{ textAlign: 'right' }}
               />
               {errors.email && <div className="text-danger">{errors.email}</div>}
             </Col>
@@ -210,6 +214,7 @@ function SignUp() {
     }
     className="mb-3"
     dir="rtl"
+    style={{ textAlign: 'right' }}
   />
   {errors.childProblem && <div className="text-danger">{errors.childProblem}</div>}
 </Col>
@@ -224,6 +229,7 @@ function SignUp() {
             onChange={handleChange}
             className="mb-3"
             dir="rtl"
+            style={{ textAlign: 'right' }}
           />
           {errors.password && <div className="text-danger">{errors.password}</div>}
 
@@ -235,6 +241,7 @@ function SignUp() {
             onChange={handleChange}
             className="mb-3"
             dir="rtl"
+            style={{ textAlign: 'right' }}
           />
           {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
 

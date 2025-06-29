@@ -12,7 +12,7 @@ const ForgetPassword = () => {
         </p>
         <form>
           <div className="mb-4">
-            <label className="form-label fs-5">البريد الإلكتروني</label>
+            <label className="form-label fs-5 w-100 text-end">البريد الإلكتروني</label>
             <input
               type="email"
               className="form-control form-control-lg"

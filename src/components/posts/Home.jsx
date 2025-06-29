@@ -192,6 +192,8 @@ const Home = () => {
                   setCommentInputs(prev => ({ ...prev, [post.id]: '' }));
                 }
               }}
+              dir="rtl"
+              style={{ textAlign: 'right' }}
             />
             <button
               className="btn btn-sm btn-primary mt-2"

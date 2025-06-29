@@ -458,6 +458,8 @@ const DoctorChat = ({
                 handleSend();
               }
             }}
+            dir="rtl"
+            style={{ textAlign: 'right' }}
           />
           <button className="send-btn" onClick={handleSend}>
             إرسال

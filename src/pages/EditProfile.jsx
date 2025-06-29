@@ -206,7 +206,8 @@ const EditProfile = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  style={{ backgroundColor: "#fff" }}
+                  dir="rtl"
+                  style={{ backgroundColor: "#fff", textAlign: 'right' }}
                 />
               </div>
               <div className="col-md-6">
@@ -218,7 +219,8 @@ const EditProfile = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                  style={{ backgroundColor: "#fff" }}
+                  dir="rtl"
+                  style={{ backgroundColor: "#fff", textAlign: 'right' }}
                 />
               </div>
             </div>
@@ -236,7 +238,8 @@ const EditProfile = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    style={{ backgroundColor: "#fff" }}
+                    dir="rtl"
+                    style={{ backgroundColor: "#fff", textAlign: 'right' }}
                   />
                 </div>
               </div>
@@ -258,7 +261,8 @@ const EditProfile = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    style={{ backgroundColor: "#fff", height: "50px" }}
+                    dir="rtl"
+                    style={{ backgroundColor: "#fff", height: "50px", textAlign: 'right' }}
                   />
                 </div>
               </div>

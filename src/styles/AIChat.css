@@ -68,10 +68,21 @@
   border-radius: 20px !important;
   padding: 10px 16px !important;
   border: 1px solid #ccc !important;
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: bidi-override;
 }
+
 .rsc-input:focus {
   border-color: #0d6efd !important;
   box-shadow: none !important;
+}
+
+/* Ensure placeholder text is also RTL */
+.rsc-input::placeholder {
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: bidi-override;
 }
 
 .rsc-submit-button {
