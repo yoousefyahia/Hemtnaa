@@ -50,3 +50,12 @@
     margin: 0 5px;
   }
 }
+
+/* دعم الوضع الداكن للحقول */
+@media (prefers-color-scheme: dark) {
+  input, select, textarea {
+    background: #fff !important;
+    color: #222 !important;
+    border-color: #ccc !important;
+  }
+}

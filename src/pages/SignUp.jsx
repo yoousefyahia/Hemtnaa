@@ -133,16 +133,15 @@ function SignUp() {
 
           <Row>
             <Col md={12}>
-              <label className="form-label fs-5" style={{ display: "block", textAlign: "right" }}>البريد الإلكتروني</label>
               <Form.Control 
                 type="email"
                 name="email"
-                placeholder="البريد الإلكتروني"
+                placeholder="email"
                 value={formData.email}
                 onChange={handleChange}
                 className="mb-3"
-                dir="rtl"
-                style={{ textAlign: 'right' }}
+                dir="ltr"
+                style={{ textAlign: 'left' }}
               />
               {errors.email && <div className="text-danger">{errors.email}</div>}
             </Col>
@@ -224,24 +223,24 @@ function SignUp() {
           <Form.Control
             type="password"
             name="password"
-            placeholder="كلمة المرور"
+            placeholder="password"
             value={formData.password}
             onChange={handleChange}
             className="mb-3"
-            dir="rtl"
-            style={{ textAlign: 'right' }}
+            dir="ltr"
+            style={{ textAlign: 'left' }}
           />
           {errors.password && <div className="text-danger">{errors.password}</div>}
 
           <Form.Control
             type="password"
             name="confirmPassword"
-            placeholder="تأكيد كلمة المرور"
+            placeholder="password"
             value={formData.confirmPassword}
             onChange={handleChange}
             className="mb-3"
-            dir="rtl"
-            style={{ textAlign: 'right' }}
+            dir="ltr"
+            style={{ textAlign: 'left' }}
           />
           {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
 

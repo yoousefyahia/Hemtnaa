@@ -60,19 +60,19 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <input 
             type="email" 
-            placeholder="البريد الإلكتروني" 
+            placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            dir="rtl"
-            style={{ textAlign: 'right' }}
+            dir="ltr"
+            style={{ textAlign: 'left' }}
           />
           <input 
             type="password" 
-            placeholder="كلمة المرور" 
+            placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            dir="rtl"
-            style={{ textAlign: 'right' }}
+            dir="ltr"
+            style={{ textAlign: 'left' }}
           />
 
           <div className="remember-forgot">

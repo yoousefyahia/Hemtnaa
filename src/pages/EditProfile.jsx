@@ -238,8 +238,8 @@ const EditProfile = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    dir="rtl"
-                    style={{ backgroundColor: "#fff", textAlign: 'right' }}
+                    dir="ltr"
+                    style={{ backgroundColor: "#fff", textAlign: 'left' }}
                   />
                 </div>
               </div>
@@ -261,8 +261,8 @@ const EditProfile = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    dir="rtl"
-                    style={{ backgroundColor: "#fff", height: "50px", textAlign: 'right' }}
+                    dir="ltr"
+                    style={{ backgroundColor: "#fff", height: "50px", textAlign: 'left' }}
                   />
                 </div>
               </div>

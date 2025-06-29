@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -64,101 +64,3 @@ button:focus-visible {
   }
 }
 
-/* === Global RTL Input Styles === */
-input[dir="rtl"],
-input[placeholder*="ا"],
-input[placeholder*="ب"],
-input[placeholder*="ت"],
-input[placeholder*="ث"],
-input[placeholder*="ج"],
-input[placeholder*="ح"],
-input[placeholder*="خ"],
-input[placeholder*="د"],
-input[placeholder*="ذ"],
-input[placeholder*="ر"],
-input[placeholder*="ز"],
-input[placeholder*="س"],
-input[placeholder*="ش"],
-input[placeholder*="ص"],
-input[placeholder*="ض"],
-input[placeholder*="ط"],
-input[placeholder*="ظ"],
-input[placeholder*="ع"],
-input[placeholder*="غ"],
-input[placeholder*="ف"],
-input[placeholder*="ق"],
-input[placeholder*="ك"],
-input[placeholder*="ل"],
-input[placeholder*="م"],
-input[placeholder*="ن"],
-input[placeholder*="ه"],
-input[placeholder*="و"],
-input[placeholder*="ي"],
-input[placeholder*="ة"],
-input[placeholder*="ى"],
-input[placeholder*="ء"] {
-  direction: rtl !important;
-  text-align: right !important;
-  unicode-bidi: bidi-override;
-}
-
-/* Ensure placeholder text is also RTL */
-input[dir="rtl"]::placeholder,
-input[placeholder*="ا"]::placeholder,
-input[placeholder*="ب"]::placeholder,
-input[placeholder*="ت"]::placeholder,
-input[placeholder*="ث"]::placeholder,
-input[placeholder*="ج"]::placeholder,
-input[placeholder*="ح"]::placeholder,
-input[placeholder*="خ"]::placeholder,
-input[placeholder*="د"]::placeholder,
-input[placeholder*="ذ"]::placeholder,
-input[placeholder*="ر"]::placeholder,
-input[placeholder*="ز"]::placeholder,
-input[placeholder*="س"]::placeholder,
-input[placeholder*="ش"]::placeholder,
-input[placeholder*="ص"]::placeholder,
-input[placeholder*="ض"]::placeholder,
-input[placeholder*="ط"]::placeholder,
-input[placeholder*="ظ"]::placeholder,
-input[placeholder*="ع"]::placeholder,
-input[placeholder*="غ"]::placeholder,
-input[placeholder*="ف"]::placeholder,
-input[placeholder*="ق"]::placeholder,
-input[placeholder*="ك"]::placeholder,
-input[placeholder*="ل"]::placeholder,
-input[placeholder*="م"]::placeholder,
-input[placeholder*="ن"]::placeholder,
-input[placeholder*="ه"]::placeholder,
-input[placeholder*="و"]::placeholder,
-input[placeholder*="ي"]::placeholder,
-input[placeholder*="ة"]::placeholder,
-input[placeholder*="ى"]::placeholder,
-input[placeholder*="ء"]::placeholder {
-  direction: rtl !important;
-  text-align: right !important;
-  unicode-bidi: bidi-override;
-}
-
-/* Bootstrap Form.Control RTL support */
-.form-control[dir="rtl"] {
-  direction: rtl !important;
-  text-align: right !important;
-  unicode-bidi: bidi-override;
-}
-
-.form-control[dir="rtl"]::placeholder {
-  direction: rtl !important;
-  text-align: right !important;
-  unicode-bidi: bidi-override;
-}
-
-/* Phone input should remain LTR */
-.phone-input-ltr,
-.phone-input-ltr input,
-.phone-input-ltr .PhoneInputInput {
-  direction: ltr !important;
-  text-align: left !important;
-}
-
-/* === End Global RTL Input Styles === */
