@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import profileHeader from '../assets/Ellipse 8.png';
+import axios from 'axios';
 
 const defaultProfile = {
   firstName: "يوسف",
@@ -21,12 +22,22 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(defaultProfile);
 
-  const updateUser = (newData) => {
-    setUser(prev => ({ ...prev, ...newData }));
+  const updateUser = async (newData) => {
+    try {
+      // Assume user._id exists
+      const userId = user._id;
+      if (!userId) throw new Error('User ID is missing');
+      const response = await axios.put(`https://hemtna.onrender.com/api/users/${userId}`, newData);
+      setUser(prev => ({ ...prev, ...response.data }));
+      return { success: true };
+    } catch (error) {
+      console.error('Failed to update user profile:', error);
+      return { success: false, error };
+    }
   };
 
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
+    <UserContext.Provider value={{ user, updateUser, setUser }}>
       {children}
     </UserContext.Provider>
   );

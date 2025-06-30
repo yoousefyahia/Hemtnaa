@@ -66,15 +66,19 @@ const EditProfile = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateUser({
+    const result = await updateUser({
       ...formData,
       phone: formData.phone ? formData.phone.replace(/\s+/g, '') : '',
       profileImage,
       birthDate: formData.birthDate
     });
-    navigate("/profile");
+    if (result.success) {
+      navigate("/profile");
+    } else {
+      alert("فشل تحديث الملف الشخصي. حاول مرة أخرى.");
+    }
   };
 
   const formatDate = (dateString) => {

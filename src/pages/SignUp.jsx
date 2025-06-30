@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col, Toast, ToastContainer } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css';
 import hemtna from "../assets/Hemtnaa.png";
@@ -10,14 +10,16 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ar from "date-fns/locale/ar";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import "react-datepicker/dist/react-datepicker.css";
-import { Route } from 'react-router-dom';
-import ForgetPassword from './ForgetPassword';
+import axios from "axios";
+import { useUser } from "../components/UserContext";
 
 registerLocale("ar", ar);
 
 function SignUp() {
   const [step, setStep] = useState(1);
   const [showToast, setShowToast] = useState(false); 
+  const { setUser } = useUser();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     userType: '',
     firstName: '',
@@ -56,9 +58,36 @@ function SignUp() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    if (validate()) {
-      setShowToast(true);
+  const handleSubmit = async () => {
+    if (!validate()) return;
+    
+    const registrationData = {
+        ...formData,
+        // The backend might expect 'role' instead of 'userType'
+        role: formData.userType, 
+    };
+    // remove unnecessary fields
+    delete registrationData.userType;
+    delete registrationData.confirmPassword;
+
+    try {
+        const res = await axios.post("https://hemtna.onrender.com/auth/register", registrationData);
+        
+        // Assuming the registration returns a token and user data
+        const { token, data: user } = res.data;
+
+        if (!token) throw new Error("لم يتم استلام رمز الدخول بعد التسجيل");
+
+        // Automatically log the user in
+        localStorage.setItem("token", token);
+        setUser(user);
+
+        setShowToast(true);
+        setTimeout(() => navigate("/landing"), 2000); // Navigate after showing toast
+
+    } catch (err) {
+        const errorMsg = err.response?.data?.message || "فشل التسجيل. حاول مرة أخرى.";
+        setErrors({ general: errorMsg });
     }
   };
 
@@ -243,6 +272,7 @@ function SignUp() {
             style={{ textAlign: 'left' }}
           />
           {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
+          {errors.general && <div className="text-danger mt-2">{errors.general}</div>}
 
           <Button className="w-100 mb-2" onClick={handleSubmit}>التسجيل</Button>
           <Button variant="secondary" className="w-100" onClick={prevStep}>رجوع</Button>

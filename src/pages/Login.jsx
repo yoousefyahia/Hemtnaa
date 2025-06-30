@@ -8,11 +8,14 @@ import rectangle from "../assets/Rectangle.png";
 import home from "../assets/home.png";
 import group from "../assets/Group.png";
 import hemtna from "../assets/Hemtnaa.png";
+import axios from "axios";
+import { useUser } from "../components/UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const { setUser } = useUser();
 
   const validate = () => {
     const newErrors = {};
@@ -32,13 +35,30 @@ const Login = () => {
     return Object.keys(newErrors).length === 0 ? 1 : 0;
   };
   const navigate = useNavigate(); 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (validate() === 1) {
+    if (validate() !== 1) return;
+    try {
+      // 1. Login
+      const loginRes = await axios.post("https://hemtna.onrender.com/auth/login", { email, password });
+      const token = loginRes.data.token;
+      if (!token) throw new Error("لم يتم استلام رمز الدخول");
+      localStorage.setItem("token", token);
+      // 2. Get user info
+      const meRes = await axios.get("https://hemtna.onrender.com/auth/me", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setUser(meRes.data);
       navigate("/landing");
+    } catch (err) {
+      setErrors({ general: "فشل تسجيل الدخول. تأكد من البيانات وحاول مرة أخرى." });
     }
   };
 
+  const handleDemoLogin = () => {
+    // No need to set user, it will use the default from UserContext
+    navigate("/landing");
+  };
 
   return (
     <div className="login-container">
@@ -82,7 +102,12 @@ const Login = () => {
             <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
           </div>
 
+          {errors.general && <div style={{ color: 'red', marginBottom: 8 }}>{errors.general}</div>}
+
           <button type="submit" className="login-btn">تسجيل الدخول</button>
+          <button type="button" className="login-btn demo-btn" onClick={handleDemoLogin} style={{ marginTop: '10px', backgroundColor: '#ffc107', borderColor: '#ffc107' }}>
+            عرض تجريبي
+          </button>
         </form>
 
         <p>
