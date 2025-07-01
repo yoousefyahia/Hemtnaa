@@ -40,12 +40,12 @@ const Login = () => {
     if (validate() !== 1) return;
     try {
       // 1. Login
-      const loginRes = await axios.post("https://hemtna.onrender.com/auth/login", { email, password });
+      const loginRes = await axios.post("https://hemtna.onrender.com/api/auth/login", { email, password });
       const token = loginRes.data.token;
       if (!token) throw new Error("لم يتم استلام رمز الدخول");
       localStorage.setItem("token", token);
       // 2. Get user info
-      const meRes = await axios.get("https://hemtna.onrender.com/auth/me", {
+      const meRes = await axios.get("https://hemtna.onrender.com/api/auth/me", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(meRes.data);
@@ -56,7 +56,6 @@ const Login = () => {
   };
 
   const handleDemoLogin = () => {
-    // No need to set user, it will use the default from UserContext
     navigate("/landing");
   };
 

@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Home from "./components/posts/Home";
 import AnimatedBackground from './components/AnimatedBackground';
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -17,12 +18,14 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgetPassword />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/landing" element={<LandingPage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit-profile" element={<EditProfile />} />
-            <Route path="/posts" element={<Home />} /> 
+            <Route path="/posts" element={<Home />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </Router>
       </div>

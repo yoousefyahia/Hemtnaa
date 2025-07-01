@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../components/UserContext";
 import logo from "../assets/Hemtnaa.png";
+import defaultUserImage from "../assets/user.png";
 import "../styles/profile.css"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,14 +54,14 @@ const Profile = () => {
         <div className="card shadow-sm mb-4">
           <div className="card-body d-flex  align-items-center">
             <img
-              src={profile.profileImage}
+              src={profile.profileImage || defaultUserImage}
               alt="صورة المستخدم"
               className="rounded-circle ms-3"
               width="120"
               height="120"
             />
             <div>
-              <h4 className="mb-1">{profile.firstName} {profile.lastName}</h4>
+              <h4 className="mb-1">{(profile.firstName || profile.first_name) + ' ' + (profile.lastName || profile.last_name)}</h4>
               <p className="text-muted mb-2">{profile.memberType}</p>
               <button
                 onClick={handleEdit}
@@ -96,7 +97,7 @@ const Profile = () => {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <h6 className="fw-bold">التعليم</h6>
-                  <p>{profile.education && profile.education.trim() !== "" ? profile.education : "حضانه"}</p>
+                  <p>{profile.education || profile.child_education_level || ''}</p>
                 </div>
                 {/* <div className="col-md-6 mb-3">
                   <h6 className="fw-bold">الخبرة</h6>
@@ -104,11 +105,11 @@ const Profile = () => {
                 </div> */}
                 <div className="col-md-6">
                   <h6 className="fw-bold">تاريخ الميلاد</h6>
-                  <p>{formatDateArabic(profile.birthDate)}</p>
+                  <p>{formatDateArabic(profile.birthDate || profile.child_birthdate)}</p>
                 </div>
                 <div className="col-md-6">
                   <h6 className="fw-bold">البلد</h6>
-                  <p>{profile.country}</p>
+                  <p>{profile.country || ''}</p>
                 </div>
               </div>
             ) : (

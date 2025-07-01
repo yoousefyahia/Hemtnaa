@@ -20,15 +20,32 @@ const defaultProfile = {
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(defaultProfile);
+  const [user, setUserState] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : defaultProfile;
+  });
+
+  // setUser wrapper to always update localStorage
+  const setUser = (newUser) => {
+    setUserState(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
+  };
 
   const updateUser = async (newData) => {
     try {
-      // Assume user._id exists
-      const userId = user._id;
-      if (!userId) throw new Error('User ID is missing');
-      const response = await axios.put(`https://hemtna.onrender.com/api/users/${userId}`, newData);
-      setUser(prev => ({ ...prev, ...response.data }));
+      // دعم _id أو id
+      const userId = user._id || user.id;
+      if (!userId) {
+        return { success: false, error: 'يجب تسجيل الدخول أولاً' };
+      }
+      const token = localStorage.getItem("token");
+      const response = await axios.put(
+        `https://hemtna.onrender.com/api/users/${userId}`,
+        newData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log('Updated user from server:', response.data);
+      setUser({ ...user, ...response.data });
       return { success: true };
     } catch (error) {
       console.error('Failed to update user profile:', error);

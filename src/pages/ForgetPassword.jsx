@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/ForgetPassword.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +18,13 @@ const ForgetPassword = () => {
     setError("");
 
     try {
-      await axios.post("https://hemtna.onrender.com/auth/forgot-password", { email });
+      await axios.post("https://hemtna.onrender.com/api/auth/forgot-password", { email });
       setMessage("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح.");
+      setTimeout(() => navigate("/reset-password?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTM3OTQ2MSwianRpIjoiNTgzMDM3ZDctNmNkZS00NDEwLTg1NzItOTlmYWQzZWFhOWY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjYiLCJuYmYiOjE3NTEzNzk0NjEsImNzcmYiOiI5MTU4ZjdjNi1iY2ZjLTQ2ODUtYmFmYi05MjcxNTNkZjMzM2YiLCJleHAiOjE3NTEzODEyNjF9.KFtANSFSkwepFLpDNLRSi1CCI-sPGxEiZ0W_Wk8kYfI"), 2000);
     } catch (err) {
+      console.log('Forget password error:', err);
+      console.log('err.response:', err.response);
+      console.log('err.message:', err.message);
       setError(err.response?.data?.message || "حدث خطأ. يرجى المحاولة مرة أخرى.");
     } finally {
       setLoading(false);
@@ -26,8 +32,8 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100 ">
-      <div className="card shadow-lg p-5 w-100" style={{ maxWidth: "500px" }}>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card shadow-lg p-4 w-100 responsive-card" style={{ maxWidth: "400px" }}>
         <h2 className="text-center mb-3 display-6">نسيت كلمة المرور</h2>
         <p className="text-center text-muted fs-5 mb-4">
           أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور.

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/Hemtnaa.png";
-import icon1 from "../assets/Group 3.png";
-import icon2 from "../assets/Group 2.png";
-import icon3 from "../assets/Ellipse 8.png";
 import { useUser } from "../components/UserContext";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -38,15 +35,15 @@ const EditProfile = () => {
 
   useEffect(() => {
     setFormData({
-      firstName: user.firstName || "يوسف",
-      lastName: user.lastName || "السيد",
-      email: user.email || "amrhemdan563@gmail.com",
-      password: user.password || "0000000",
-      country: user.country || "مصر",
-      phone: user.phone || "+20 1078544486",
-      education: user.education || "حضانه",
-      experience: user.experience || "5 سنوات",
-      birthDate: user.birthDate || "2010-01-01"
+      firstName: user.firstName || user.first_name || "",
+      lastName: user.lastName || user.last_name || "",
+      email: user.email || "",
+      password: user.password || "",
+      country: user.country || "",
+      phone: user.phone || "",
+      education: user.education || user.child_education_level || "",
+      experience: user.experience || "",
+      birthDate: user.birthDate || user.child_birthdate || ""
     });
     setProfileImage(user.profileImage);
   }, [user]);
@@ -77,7 +74,12 @@ const EditProfile = () => {
     if (result.success) {
       navigate("/profile");
     } else {
-      alert("فشل تحديث الملف الشخصي. حاول مرة أخرى.");
+      if(result.error === 'يجب تسجيل الدخول أولاً') {
+        alert('يجب تسجيل الدخول أولاً');
+        navigate('/login');
+      } else {
+        alert("فشل تحديث الملف الشخصي. حاول مرة أخرى.");
+      }
     }
   };
 
@@ -111,8 +113,6 @@ const EditProfile = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{ padding: "20px 20px" }}>
         <div className="container-fluid justify-content-start ps-0">
           <div className="d-flex align-items-center gap-3">
-            {/* <img src={icon1} alt="أيقونة 1" width="45" height="45" style={{ objectFit: "contain" }} /> */}
-            {/* <img src={icon2} alt="أيقونة 2" width="45" height="45" style={{ objectFit: "contain" }} /> */}
             <img src={user.profileImage} alt="صورة المستخدم" width="45" height="45" style={{ objectFit: "cover", borderRadius: "50%" }} />
           </div>
         </div>
