@@ -10,7 +10,7 @@ const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, acti
   const navigate = useNavigate(); 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   const getProgressColor = (progress) => {
     if (progress < 40) return "#24B600";     // أخضر
@@ -29,7 +29,10 @@ const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, acti
 
   const handleLogout = () => {
     setDropdownOpen(false);
-    navigate("/");
+    localStorage.removeItem("token");
+    localStorage.removeItem("likedPosts");
+    setUser(null);
+    navigate("/login");
   };
 
   // إغلاق القائمة عند الضغط خارجها
