@@ -18,7 +18,7 @@
 ---
 
 ## About the Team Leader
-**Eng. Youssef Yehia**
+**Eng. Yousef Yahia**
 - **Role:** Project Team Leader & Frontend Team Leader
 - **Responsibilities:**
   - Led the project team and frontend team
