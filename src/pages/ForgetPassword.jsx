@@ -19,8 +19,8 @@ const ForgetPassword = () => {
 
     try {
       await axios.post("https://hemtna.onrender.com/api/auth/forgot-password", { email });
-      setMessage("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح.");
-      setTimeout(() => navigate("/reset-password?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTM3OTQ2MSwianRpIjoiNTgzMDM3ZDctNmNkZS00NDEwLTg1NzItOTlmYWQzZWFhOWY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjYiLCJuYmYiOjE3NTEzNzk0NjEsImNzcmYiOiI5MTU4ZjdjNi1iY2ZjLTQ2ODUtYmFmYi05MjcxNTNkZjMzM2YiLCJleHAiOjE3NTEzODEyNjF9.KFtANSFSkwepFLpDNLRSi1CCI-sPGxEiZ0W_Wk8kYfI"), 2000);
+      setMessage("تم إرسال كود التحقق إلى بريدك الإلكتروني بنجاح.");
+      setTimeout(() => navigate("/verify-code", { state: { email } }), 2000);
     } catch (err) {
       console.log('Forget password error:', err);
       console.log('err.response:', err.response);

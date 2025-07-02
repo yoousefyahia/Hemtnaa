@@ -10,12 +10,15 @@ import group from "../assets/Group.png";
 import hemtna from "../assets/Hemtnaa.png";
 import axios from "axios";
 import { useUser } from "../components/UserContext";
+import { Toast, ToastContainer } from 'react-bootstrap';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { setUser } = useUser();
+  const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -38,6 +41,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (validate() !== 1) return;
+    setLoading(true);
     try {
       // 1. Login
       const loginRes = await axios.post("https://hemtna.onrender.com/api/auth/login", { email, password });
@@ -49,9 +53,16 @@ const Login = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(meRes.data);
-      navigate("/landing");
+      setShowToast(true);
+      setTimeout(() => navigate("/landing"), 1500);
     } catch (err) {
-      setErrors({ general: "فشل تسجيل الدخول. تأكد من البيانات وحاول مرة أخرى." });
+      let errorMsg = "فشل تسجيل الدخول. تأكد من البيانات وحاول مرة أخرى.";
+      if (err.response?.data?.message) errorMsg = err.response.data.message;
+      else if (err.response?.data?.error) errorMsg = err.response.data.error;
+      else if (err.message) errorMsg = err.message;
+      setErrors({ general: errorMsg });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -101,9 +112,11 @@ const Login = () => {
             <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
           </div>
 
-          {errors.general && <div style={{ color: 'red', marginBottom: 8 }}>{errors.general}</div>}
+          {errors.general && <div className="alert alert-danger text-center" style={{ marginBottom: 8 }}>{errors.general}</div>}
 
-          <button type="submit" className="login-btn">تسجيل الدخول</button>
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
+          </button>
           <button type="button" className="login-btn demo-btn" onClick={handleDemoLogin} style={{ marginTop: '10px', backgroundColor: '#ffc107', borderColor: '#ffc107' }}>
             عرض تجريبي
           </button>
@@ -115,6 +128,12 @@ const Login = () => {
       </div>
 
       <img src={group} alt="الدائرة الجماعية" className="group" />
+
+      <ToastContainer position="top-center" className="p-3">
+        <Toast onClose={() => setShowToast(false)} show={showToast} delay={2000} autohide bg="success">
+          <Toast.Body className="text-white text-center fw-bold">تم تسجيل الدخول بنجاح</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </div>
   );
 };

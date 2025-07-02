@@ -35,6 +35,7 @@ function SignUp() {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,6 +64,7 @@ function SignUp() {
 
   const handleSubmit = async () => {
     if (!validate()) return;
+    setLoading(true);
     const registrationData = {
       user_type: formData.user_type,
       first_name: formData.first_name,
@@ -78,15 +80,18 @@ function SignUp() {
     };
     try {
       const res = await axios.post("https://hemtna.onrender.com/api/auth/register", registrationData);
+      localStorage.setItem("registeredEmail", formData.email);
+      localStorage.setItem("registeredName", formData.first_name + " " + formData.last_name);
       setShowToast(true);
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
-      console.log('Registration error:', err.response?.data);
-      console.log('Registration error (full):', err);
-      console.log('err.response:', err.response);
-      console.log('err.message:', err.message);
-      const errorMsg = err.response?.data?.message || err.response?.data?.error || "فشل التسجيل. حاول مرة أخرى.";
+      let errorMsg = "فشل التسجيل. حاول مرة أخرى.";
+      if (err.response?.data?.message) errorMsg = err.response.data.message;
+      else if (err.response?.data?.error) errorMsg = err.response.data.error;
+      else if (err.message) errorMsg = err.message;
       setErrors({ general: errorMsg });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -290,8 +295,10 @@ function SignUp() {
             style={{ textAlign: 'left' }}
           />
           {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
-          {errors.general && <div className="text-danger mt-2">{errors.general}</div>}
-          <Button className="w-100 mb-2" onClick={handleSubmit}>التسجيل</Button>
+          {errors.general && <div className="alert alert-danger mt-2 text-center">{errors.general}</div>}
+          <Button className="w-100 mb-2" onClick={handleSubmit} disabled={loading}>
+            {loading ? "جاري التسجيل..." : "التسجيل"}
+          </Button>
           <Button variant="secondary" className="w-100" onClick={prevStep}>رجوع</Button>
         </>
       )}

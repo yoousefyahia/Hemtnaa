@@ -9,6 +9,7 @@ import EditProfile from "./pages/EditProfile";
 import Home from "./components/posts/Home";
 import AnimatedBackground from './components/AnimatedBackground';
 import ResetPassword from "./pages/ResetPassword";
+import VerifyCode from "./pages/VerifyCode";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/posts" element={<Home />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/verify-code" element={<VerifyCode />} />
           </Routes>
         </Router>
       </div>

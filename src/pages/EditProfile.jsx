@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/Hemtnaa.png";
+import defaultUserImage from "../assets/Ellipse 8.png";
 import { useUser } from "../components/UserContext";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -9,6 +10,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ar from "date-fns/locale/ar";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 registerLocale("ar", ar);
 
@@ -16,7 +18,7 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const { user, updateUser } = useUser();
+  const { user, updateUser, setUser } = useUser();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -72,6 +74,20 @@ const EditProfile = () => {
       birthDate: formData.birthDate
     });
     if (result.success) {
+      // جلب بيانات المستخدم من السيرفر بعد التحديث
+      try {
+        const token = localStorage.getItem("token");
+        const meRes = await axios.get("https://hemtna.onrender.com/api/auth/me", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        // تحديث بيانات المستخدم في الـ context
+        if (meRes.data) {
+          // setUser متاح من useUser
+          if (typeof setUser === 'function') setUser(meRes.data);
+        }
+      } catch (err) {
+        // تجاهل الخطأ، فقط لأمان إضافي
+      }
       navigate("/profile");
     } else {
       if(result.error === 'يجب تسجيل الدخول أولاً') {
@@ -113,7 +129,7 @@ const EditProfile = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{ padding: "20px 20px" }}>
         <div className="container-fluid justify-content-start ps-0">
           <div className="d-flex align-items-center gap-3">
-            <img src={user.profileImage} alt="صورة المستخدم" width="45" height="45" style={{ objectFit: "cover", borderRadius: "50%" }} />
+            <img src={user.profileImage || defaultUserImage} alt="صورة المستخدم" width="45" height="45" style={{ objectFit: "cover", borderRadius: "50%" }} />
           </div>
         </div>
       </nav>
@@ -140,7 +156,7 @@ const EditProfile = () => {
           onClick={() => document.getElementById('profileImageInput').click()}
         >
           <img
-            src={profileImage}
+            src={profileImage || defaultUserImage}
             alt="صورة الملف الشخصي"
             style={{
               width: "100%",

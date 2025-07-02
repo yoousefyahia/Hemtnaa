@@ -4,7 +4,7 @@ import { useUser } from "./UserContext";
 import "../styles/NavBar.css";
 import { useState, useRef } from "react";
 import logo from "../assets/Hemtnaa.png";
-import defaultUserImage from "../assets/user.png";
+import defaultUserImage from "../assets/Ellipse 8.png";
 
 const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, activeTab }) => {
   const navigate = useNavigate(); 

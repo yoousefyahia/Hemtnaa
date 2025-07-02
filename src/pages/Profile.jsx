@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../components/UserContext";
 import logo from "../assets/Hemtnaa.png";
-import defaultUserImage from "../assets/user.png";
+import defaultUserImage from "../assets/Ellipse 8.png";
 import "../styles/profile.css"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
