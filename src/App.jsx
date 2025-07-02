@@ -16,7 +16,7 @@ function App() {
     <>
       <AnimatedBackground />
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <Router>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />

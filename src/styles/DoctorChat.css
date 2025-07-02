@@ -382,12 +382,66 @@
 }
 
 @media (max-width: 600px) {
-  .emoji-picker-wrapper {
-    max-width: 60vw;
-    left: 20vw;
-    transform: none;
+  .doctor-chat-container {
+    height: 100vh;
+    border-radius: 0;
+    max-width: 100%;
+    margin-bottom: 100px;
+  }
+  .chat-header-custom {
+    padding: 6px 8px;
+    min-height: 44px;
+  }
+  .chat-body {
+    padding: 8px 0;
+    min-height: unset;
+    margin-bottom: 0;
+  }
+  .message-wrapper {
+    padding: 0 8px;
+    margin-bottom: 12px;
+  }
+  .message-sender {
+    font-size: 12px;
+  }
+  .message-bubble {
+    font-size: 13px;
+    padding: 8px 12px 6px 12px;
+    max-width: 90%;
+  }
+  .message-image {
+    max-width: 120px;
+    max-height: 90px;
     border-radius: 8px;
-    padding: 32px 0 0 0;
+  }
+  .doctor-avatar-custom {
+    width: 32px;
+    height: 32px;
+  }
+  .chat-footer {
+    padding: 6px 8px;
+    gap: 2px;
+  }
+  .message-input {
+    font-size: 13px;
+    padding: 6px 8px;
+    margin: 0 2px;
+  }
+  .send-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  .video-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .local-video,
+  .remote-video {
+    width: min(80vw, 400px);
+    height: min(50vw, 300px);
+  }
+  .call-controls {
+    gap: 24px;
   }
 }
 

@@ -123,11 +123,11 @@ const VerifyCode = () => {
               autoFocus={idx === 0}
             />
           ))}
-        </div>
+          </div>
         {error && <div style={{ color: "#d32f2f", textAlign: "center", marginBottom: 12 }}>{error}</div>}
         <button type="submit" style={{ width: "100%", background: "#225c8b", color: "#fff", border: "none", borderRadius: 8, padding: "12px 0", fontSize: 20, fontWeight: 600, marginBottom: 12 }} disabled={loading}>
-          {loading ? "جاري التحقق..." : "تأكيد"}
-        </button>
+            {loading ? "جاري التحقق..." : "تأكيد"}
+          </button>
         <button type="button" onClick={handleChangeEmail} style={{ width: "100%", background: "#fff", color: "#225c8b", border: "1.5px solid #225c8b", borderRadius: 8, padding: "12px 0", fontSize: 18, fontWeight: 600, marginBottom: 8 }}>
           تغيير البريد الالكتروني
         </button>
@@ -138,7 +138,7 @@ const VerifyCode = () => {
         </div>
         {resendMessage && <div style={{ color: '#388e3c', textAlign: 'center', marginBottom: 8 }}>{resendMessage}</div>}
         {resendError && <div style={{ color: '#d32f2f', textAlign: 'center', marginBottom: 8 }}>{resendError}</div>}
-      </form>
+        </form>
     </div>
   );
 };

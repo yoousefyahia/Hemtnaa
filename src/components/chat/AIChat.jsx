@@ -83,6 +83,10 @@ const steps = [
   {
     id: 'disorders-after-info',
     message: 'ملاحظة هامة: هذه المعلومات هي إرشادية فقط ولا تغني عن التقييم الدقيق من قبل أخصائي التخاطب.\n\nهل تود معرفة المزيد عن اضطراب آخر؟',
+    trigger: 'disorders-after-info-options',
+  },
+  {
+    id: 'disorders-after-info-options',
     options: [
       { value: 'more-disorders', label: 'نعم، اختر اضطراباً آخر', trigger: 'disorders-menu' },
       { value: 'main-menu', label: 'العودة للقائمة الرئيسية', trigger: 'main-options' },

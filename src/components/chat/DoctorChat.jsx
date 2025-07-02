@@ -7,13 +7,14 @@ import '../../styles/DoctorChat.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DoctorProfileModal from './DoctorProfileModal';
+import userImg from "../../assets/user.png";
 
 const socket = io(""); 
 
 const DoctorChat = ({ 
   doctor = { 
     name: "د. أحمد محمود", 
-    image: "/src/assets/user.png", 
+    image: userImg ,
     lastSeen: "نشط الآن",
     specialty: "أخصائي التخاطب والسمعيات",
     age: 34,

@@ -100,4 +100,10 @@
   .ai-chat-header {
     font-size: 1.5rem;
   }
+}
+
+@media (max-width: 600px) {
+  .ai-chat-container {
+    margin-bottom: 70px;
+  }
 } 

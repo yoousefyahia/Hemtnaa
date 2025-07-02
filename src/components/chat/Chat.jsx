@@ -6,7 +6,7 @@ const Chat = () => {
   const [activeTab, setActiveTab] = useState("doctor");
 
   return (
-    <div className="container d-flex flex-column align-items-center my-5 py-5">
+    <div className="container d-flex flex-column align-items-center">
       <div className="d-flex justify-content-between gap-4 mb-4" style={{ width: '100%', maxWidth: '400px' }}>
         <button
           className={`btn w-50 ${activeTab === "doctor" ? "btn-primary" : "btn-outline-primary"}`}
