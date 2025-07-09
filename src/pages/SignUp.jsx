@@ -52,7 +52,6 @@ function SignUp() {
     if (!formData.email) newErrors.email = "من فضلك أدخل البريد الإلكتروني";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "من فضلك أدخل بريد إلكتروني صحيح";
     if (!formData.phone) newErrors.phone = "من فضلك أدخل رقم الهاتف";
-    if (!formData.country_code) newErrors.country_code = "من فضلك أدخل كود الدولة";
     if (!formData.child_birthdate) newErrors.child_birthdate = "من فضلك أدخل تاريخ ميلاد الطفل";
     if (!formData.child_problem) newErrors.child_problem = formData.user_type === "doctor" ? "من فضلك اختر تخصص الطبيب" : "من فضلك اختر مشكلة الطفل";
     if (!formData.password) newErrors.password = "من فضلك أدخل كلمة المرور";
@@ -65,13 +64,18 @@ function SignUp() {
   const handleSubmit = async () => {
     if (!validate()) return;
     setLoading(true);
+    // استخراج كود الدولة والرقم بدون كود الدولة
+    const phone = formData.phone || "";
+    const match = phone.match(/^\+(\d{1,3})/);
+    const country_code = match ? match[1] : "";
+    const phone_without_code = phone.replace(/^\+\d{1,3}/, "");
     const registrationData = {
       user_type: formData.user_type,
       first_name: formData.first_name,
       last_name: formData.last_name,
       email: formData.email,
-      phone: formData.phone,
-      country_code: formData.country_code,
+      phone: phone_without_code,
+      country_code,
       category: 'A',
       child_birthdate: formData.child_birthdate,
       child_education_level: formData.child_education_level,
@@ -178,7 +182,7 @@ function SignUp() {
             </Col>
           </Row>
           <Row>
-            <Col md={8}>
+            <Col md={12}>
               <PhoneInput
                 international
                 defaultCountry="EG"
@@ -188,21 +192,10 @@ function SignUp() {
               />
               {errors.phone && <div className="text-danger">{errors.phone}</div>}
             </Col>
-            <Col md={4}>
-              <Form.Control
-                name="country_code"
-                placeholder="كود الدولة"
-                value={formData.country_code}
-                onChange={handleChange}
-                className="mb-3"
-                dir="ltr"
-                style={{ textAlign: 'left' }}
-              />
-              {errors.country_code && <div className="text-danger">{errors.country_code}</div>}
-            </Col>
           </Row>
           <Row>
             <Col md={6}>
+              {formData.user_type !== "doctor" && (
               <div className="w-100" style={{ position: "relative" }}>
                 <DatePicker
                   selected={formData.child_birthdate ? new Date(formData.child_birthdate) : null}
@@ -239,9 +232,10 @@ function SignUp() {
                   }}
                 />
               </div>
-              {errors.child_birthdate && <div className="text-danger">{errors.child_birthdate}</div>}
+              )}
+              {formData.user_type !== "doctor" && errors.child_birthdate && <div className="text-danger">{errors.child_birthdate}</div>}
             </Col>
-            <Col md={6}>
+            <Col md={formData.user_type === "doctor" ? 12 : 6}>
               <Form.Control
                 type="text"
                 name="child_problem"
@@ -261,6 +255,7 @@ function SignUp() {
           </Row>
           <Row>
             <Col md={12}>
+              {formData.user_type !== "doctor" && (
               <Form.Control
                 name="child_education_level"
                 placeholder="المستوى التعليمي للطفل"
@@ -270,7 +265,8 @@ function SignUp() {
                 dir="rtl"
                 style={{ textAlign: 'right' }}
               />
-              {errors.child_education_level && <div className="text-danger">{errors.child_education_level}</div>}
+              )}
+              {formData.user_type !== "doctor" && errors.child_education_level && <div className="text-danger">{errors.child_education_level}</div>}
             </Col>
           </Row>
           <Form.Control

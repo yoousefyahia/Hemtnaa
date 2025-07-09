@@ -68,10 +68,10 @@ const EditProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await updateUser({
-      ...formData,
-      phone: formData.phone ? formData.phone.replace(/\s+/g, '') : '',
-      profileImage,
-      birthDate: formData.birthDate
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      profileImage
     });
     if (result.success) {
       // جلب بيانات المستخدم من السيرفر بعد التحديث
@@ -80,14 +80,10 @@ const EditProfile = () => {
         const meRes = await axios.get("https://hemtna.onrender.com/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` }
         });
-        // تحديث بيانات المستخدم في الـ context
         if (meRes.data) {
-          // setUser متاح من useUser
           if (typeof setUser === 'function') setUser(meRes.data);
         }
-      } catch (err) {
-        // تجاهل الخطأ، فقط لأمان إضافي
-      }
+      } catch (err) {}
       navigate("/profile");
     } else {
       if(result.error === 'يجب تسجيل الدخول أولاً') {
@@ -244,10 +240,9 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-
-            {/* البريد الإلكتروني وكلمة المرور */}
+            {/* البريد الإلكتروني */}
             <div className="row mb-3">
-              <div className="col-md-8">
+              <div className="col-md-12">
                 <label className="form-label fw-bold">البريد الإلكتروني</label>
                 <div className="input-group">
                   <span className="input-group-text">@</span>
@@ -263,106 +258,7 @@ const EditProfile = () => {
                   />
                 </div>
               </div>
-              <div className="col-md-6">
-                <label className="form-label fw-bold">كلمة المرور</label>
-                <div className="input-group">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary" 
-                    onClick={() => setIsPasswordVisible(prev => !prev)}
-                    style={{ fontSize: "0.8rem", padding: "8px" }}
-                  >
-                    {isPasswordVisible ? "إخفاء" : "إظهار"}
-                  </button>
-                  <input
-                    type={isPasswordVisible ? "text" : "password"}
-                    className="form-control"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    dir="ltr"
-                    style={{ backgroundColor: "#fff", height: "50px", textAlign: 'left' }}
-                  />
-                </div>
-              </div>
             </div>
-
-            {/* رقم الهاتف مع رمز الدولة */}
-            <div className="row mb-3">
-              <div className="col-md-12">
-                <label className="form-label">رقم الهاتف</label>
-                <PhoneInput
-                  international
-                  defaultCountry="EG"
-                  value={formData.phone}
-                  onChange={handlePhoneChange}
-                  className="form-control phone-input-ltr"
-                  required
-                  dir="ltr"
-                />
-              </div>
-            </div>
-
-            {/* التعليم والخبرة */}
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <label className="form-label fw-bold">المستوى التعليمي</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="education"
-                  value={formData.education}
-                  onChange={handleChange}
-                  required
-                  dir="rtl"
-                  style={{ backgroundColor: "#fff", textAlign: 'right' }}
-                  placeholder="مثال: بكالوريوس، دبلوم، ماجستير ..."
-                />
-              </div>
-            </div>
-
-            {/* تاريخ الميلاد */}
-            <div className="mb-3">
-              <label className="form-label">تاريخ الميلاد</label>
-              <div className="w-100" style={{ position: "relative" }}>
-                <DatePicker
-                  selected={formData.birthDate ? new Date(formData.birthDate) : null}
-                  onChange={date => handleChange({ target: { name: 'birthDate', value: date ? date.toISOString().split('T')[0] : '' } })}
-                  placeholderText="يوم/شهر/سنة"
-                  dateFormat="dd/MM/yyyy"
-                  locale="ar"
-                  calendarStartDay={6}
-                  showMonthDropdown
-                  showYearDropdown
-                  dropdownMode="select"
-                  isClearable
-                  popperPlacement="bottom"
-                  name="birthDate"
-                  id="birthDate"
-                  calendarClassName="datepicker-rtl"
-                  customInput={
-                    <input
-                      className="form-control"
-                      style={{ paddingLeft: "2.5rem", direction: "rtl", textAlign: "right", width: "100%" }}
-                      placeholder="يوم/شهر/سنة"
-                      dir="rtl"
-                    />
-                  }
-                />
-                <FaRegCalendarAlt
-                  style={{
-                    position: "absolute",
-                    left: "10px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    color: "#888",
-                    pointerEvents: "none"
-                  }}
-                />
-              </div>
-            </div>
-
             <div className="text-center">
               <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }}>
                 حفظ التغييرات

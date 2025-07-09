@@ -132,7 +132,9 @@ const Profile = () => {
             </div>
             <div className="d-flex justify-content-between mb-2">
               <span className="text-muted">الهاتف</span>
-              <span className="ltr-text">{profile.phone}</span>
+              <span className="ltr-text">
+                {profile.country_code ? `+${profile.country_code} ` : ''}{profile.phone}
+              </span>
             </div>
             <div className="d-flex justify-content-between mb-2">
               <span className="text-muted">تاريخ الانضمام</span>

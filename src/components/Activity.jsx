@@ -110,33 +110,41 @@ import ActivityCard from './ActivityCard';
 
 const Activity = ({ activityProgress, setActivityProgress }) => {
   const [activityList, setActivityList] = useState([]);
+  const [pendingList, setPendingList] = useState([]); // للحفظ المؤقت
 
   // جلب الأنشطة من الباك
   useEffect(() => {
     axios.get('https://hemtna.onrender.com/api/activities/')
       .then(res => {
         setActivityList(res.data.data || []);
+        setPendingList(res.data.data || []);
       })
       .catch(err => console.error("فشل في تحميل الأنشطة:", err));
   }, []);
 
-  // حساب نسبة الإنجاز
-  useEffect(() => {
-    const completed = activityList.filter((a) => a.checked).length;
-    const percent = Math.round((completed / activityList.length) * 100);
+  // حساب نسبة الإنجاز (فقط عند الحفظ)
+  const updateProgress = (list) => {
+    const completed = list.filter((a) => a.checked).length;
+    const percent = Math.round((completed / list.length) * 100);
     setActivityProgress(percent);
-  }, [activityList, setActivityProgress]);
+  };
 
-  // تحديث check في السيرفر والمحلي
-  const handleCheck = (id, currentChecked) => {
-    const updatedChecked = !currentChecked;
-    axios.put(`https://hemtna.onrender.com/api/activities/${id}`, {
-      checked: updatedChecked
-    }).then(() => {
-      setActivityList(prev =>
-        prev.map(a => a.id === id ? { ...a, checked: updatedChecked } : a)
-      );
-    }).catch(err => console.error("فشل في تحديث النشاط:", err));
+  // عند تغيير علامة النشاط: فقط محلي
+  const handleCheck = (id) => {
+    setPendingList(prev => prev.map(a => a.id === id ? { ...a, checked: !a.checked } : a));
+  };
+
+  // عند الضغط على حفظ: أرسل التغييرات للسيرفر وحدث المؤشر
+  const handleSave = async () => {
+    try {
+      await Promise.all(pendingList.map(a =>
+        axios.put(`https://hemtna.onrender.com/api/activities/${a.id}`, { checked: a.checked })
+      ));
+      setActivityList(pendingList);
+      updateProgress(pendingList);
+    } catch (err) {
+      console.error("فشل في حفظ الأنشطة:", err);
+    }
   };
 
   // الوقت المتبقي كنص
@@ -153,14 +161,14 @@ const Activity = ({ activityProgress, setActivityProgress }) => {
   // إعادة رسم كل دقيقة لتحديث الوقت المتبقي
   useEffect(() => {
     const interval = setInterval(() => {
-      setActivityList(list => [...list]); // تحديث وهمي لإعادة الرسم
+      setPendingList(list => [...list]);
     }, 60000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div>
-      {activityList.map((activity) => (
+      {pendingList.map((activity) => (
         <ActivityCard
           key={activity.id}
           title={activity.title}
@@ -168,22 +176,25 @@ const Activity = ({ activityProgress, setActivityProgress }) => {
           description={activity.description}
           image={activity.image}
           checked={activity.checked}
-          onCheck={() => handleCheck(activity.id, activity.checked)}
+          onCheck={() => handleCheck(activity.id)}
         />
       ))}
-      <button style={{
-        marginTop: 16,
-        marginBottom: 56,
-        background: '#1976d2',
-        color: '#fff',
-        border: 'none',
-        borderRadius: 8,
-        padding: '12px 32px',
-        fontWeight: 'bold',
-        fontSize: '1.1rem',
-        cursor: 'pointer',
-        boxShadow: '0 2px 8px #0001',
-      }}>
+      <button
+        style={{
+          marginTop: 16,
+          marginBottom: 56,
+          background: '#1976d2',
+          color: '#fff',
+          border: 'none',
+          borderRadius: 8,
+          padding: '12px 32px',
+          fontWeight: 'bold',
+          fontSize: '1.1rem',
+          cursor: 'pointer',
+          boxShadow: '0 2px 8px #0001',
+        }}
+        onClick={handleSave}
+      >
         حفظ
       </button>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaHeart, FaComment } from "react-icons/fa";
-import defaultUserImg from '../../assets/user.png';
+import defaultUserImg from '../../assets/Ellipse 8.png';
 import { useUser } from '../../components/UserContext';
 import './Home.css';
 
@@ -122,7 +122,17 @@ const Home = () => {
       {localPosts.map(post => (
         <div key={post.id} className="post-card card mb-4 p-3 w-100 shadow" style={{ maxWidth: "800px", textAlign: "right" }}>
           <div className="d-flex align-items-center mb-3">
-            <img src={post.doctor_picture || defaultUserImg} alt="دكتور" className="rounded-circle me-2" width="50" height="50" />
+            <img
+              src={
+                post.doctor_picture && typeof post.doctor_picture === 'string' && post.doctor_picture.trim() !== ""
+                  ? post.doctor_picture
+                  : defaultUserImg
+              }
+              alt="دكتور"
+              className="rounded-circle me-2"
+              width="50"
+              height="50"
+            />
             <div>
               <strong>{post.doctor_name}</strong>
               <div className="text-muted small">{formatDate(post.timestamp)}</div>

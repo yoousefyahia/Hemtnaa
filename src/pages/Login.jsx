@@ -10,6 +10,7 @@ import group from "../assets/Group.png";
 import hemtna from "../assets/Hemtnaa.png";
 import axios from "axios";
 import { useUser } from "../components/UserContext";
+import defaultUserImage from "../assets/Ellipse 8.png";
 import { Toast, ToastContainer } from 'react-bootstrap';
 
 const Login = () => {
@@ -67,6 +68,20 @@ const Login = () => {
   };
 
   const handleDemoLogin = () => {
+    setUser({
+      firstName: "مستخدم",
+      lastName: "تجريبي",
+      email: "demo@demo.com",
+      password: "0000000",
+      country: "مصر",
+      phone: "+201000000000",
+      education: "تجريبي",
+      experience: "-",
+      birthDate: "2010-01-01",
+      profileImage: defaultUserImage,
+      joinDate: new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' }),
+      lastActivity: "الآن"
+    });
     navigate("/landing");
   };
 
