@@ -106,7 +106,7 @@ function SignUp() {
     <Container className="mt-5 p-4 rounded" style={{ backgroundColor: '#fff', maxWidth: '600px' }}>
       
       {/*  Toast Message */}
-      <ToastContainer position="top-center" className="p-3">
+      <ToastContainer position="middle-center" className="p-3" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'fixed', zIndex: 9999 }}>
         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="success">
           <Toast.Body className="text-white text-center fw-bold">تم التسجيل بنجاح </Toast.Body>
         </Toast>
