@@ -52,8 +52,11 @@ function SignUp() {
     if (!formData.email) newErrors.email = "من فضلك أدخل البريد الإلكتروني";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "من فضلك أدخل بريد إلكتروني صحيح";
     if (!formData.phone) newErrors.phone = "من فضلك أدخل رقم الهاتف";
-    if (!formData.child_birthdate) newErrors.child_birthdate = "من فضلك أدخل تاريخ ميلاد الطفل";
+    // فقط لو كان ولي أمر
+    if (formData.user_type !== "doctor" && !formData.child_birthdate) newErrors.child_birthdate = "من فضلك أدخل تاريخ ميلاد الطفل";
     if (!formData.child_problem) newErrors.child_problem = formData.user_type === "doctor" ? "من فضلك اختر تخصص الطبيب" : "من فضلك اختر مشكلة الطفل";
+    // فقط لو كان ولي أمر
+    if (formData.user_type !== "doctor" && !formData.child_education_level) newErrors.child_education_level = "من فضلك أدخل المستوى التعليمي للطفل";
     if (!formData.password) newErrors.password = "من فضلك أدخل كلمة المرور";
     if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "كلمة المرور وتأكيد كلمة المرور غير متطابقين";
 
