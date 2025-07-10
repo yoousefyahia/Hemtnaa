@@ -144,7 +144,7 @@ const Login = () => {
 
       <img src={group} alt="الدائرة الجماعية" className="group" />
 
-      <ToastContainer position="top-center" className="p-3">
+      <ToastContainer position="middle-center" className="p-3" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'fixed', zIndex: 9999 }}>
         <Toast onClose={() => setShowToast(false)} show={showToast} delay={2000} autohide bg="success">
           <Toast.Body className="text-white text-center fw-bold">تم تسجيل الدخول بنجاح</Toast.Body>
         </Toast>
