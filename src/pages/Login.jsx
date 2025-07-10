@@ -54,9 +54,17 @@ const Login = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(meRes.data);
+      console.log("meRes.data after login:", meRes.data);
       setShowToast(true);
-      setTimeout(() => navigate("/landing"), 1500);
+      setTimeout(() => {
+        if (meRes.data.user_type === "doctor") {
+          navigate("/doctor-demo");
+        } else {
+          navigate("/landing");
+        }
+      }, 1500);
     } catch (err) {
+      console.log("Login error:", err);
       let errorMsg = "فشل تسجيل الدخول. تأكد من البيانات وحاول مرة أخرى.";
       if (err.response?.data?.message) errorMsg = err.response.data.message;
       else if (err.response?.data?.error) errorMsg = err.response.data.error;

@@ -85,6 +85,7 @@ function SignUp() {
       child_problem: formData.child_problem,
       password: formData.password
     };
+    console.log("registrationData", registrationData);
     try {
       const res = await axios.post("https://hemtna.onrender.com/api/auth/register", registrationData);
       localStorage.setItem("registeredEmail", formData.email);
@@ -92,6 +93,7 @@ function SignUp() {
       setShowToast(true);
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
+      console.log("Register error:", err);
       let errorMsg = "فشل التسجيل. حاول مرة أخرى.";
       if (err.response?.data?.message) errorMsg = err.response.data.message;
       else if (err.response?.data?.error) errorMsg = err.response.data.error;

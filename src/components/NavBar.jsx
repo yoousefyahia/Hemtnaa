@@ -62,7 +62,7 @@ const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, acti
         {/* صورة اليوزر مع القائمة المنسدلة */}
         <div className="d-flex align-items-center position-relative" ref={dropdownRef}>
           <img
-            src={user.profileImage || defaultUserImage}
+            src={user?.profileImage || defaultUserImage}
             alt="اليورز"
             className="user rounded-circle"
             width="80"
