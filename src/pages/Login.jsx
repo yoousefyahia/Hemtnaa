@@ -57,8 +57,9 @@ const Login = () => {
       console.log("meRes.data after login:", meRes.data);
       setShowToast(true);
       setTimeout(() => {
+        console.log("user_type:", meRes.data.user_type); // للتأكد من القيمة
         if (meRes.data.user_type === "doctor") {
-          navigate("/doctor-demo");
+          window.location.replace("https://ahmedfathy112.github.io/hemtna/");
         } else {
           navigate("/landing");
         }

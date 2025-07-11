@@ -56,33 +56,34 @@ The platform is available as both a web application and a mobile app, ensuring a
 
 ## Main Features
 
-### 🏠 User Management
-- User registration (parents/doctors)
-- Secure login & authentication
-- Profile management and editing
-- Password reset and verification via email
-
-### 📝 Posts & Comments
-- View posts from doctors and the community
-- Add, view, and interact with comments (live from the server)
-- Like system for posts (server-synced)
-
-### 💬 Chat & Communication
-- Real-time chat with doctors (WebSocket-based)
-- AI-powered chatbot for instant help and information
-- Doctor profile modal and consultation features
-
-### 🎮 Educational Games
-- Integrated interactive games for children (Wordwall and more)
+### 🤖 AI-powered Chatbot
+- Smart assistant built with react-simple-chatbot, providing instant help and information about speech disorders, autism, and more.
+- Supports automatic responses and user-guided flows.
 
 ### 🏆 Activities & Progress Tracking
-- Daily/weekly activities for children
-- Progress bar and achievement tracking
-- Mark activities as completed (server-synced)
+- Daily/weekly activities for children (e.g., healthy meals, exercise, reading stories).
+- Users can mark activities as completed, with progress tracked and displayed via a progress bar.
+- Activities are synced with the server for persistent tracking.
+
+### 🎮 Educational Games
+- Integrated interactive educational games for children using Wordwall (embedded via iframes).
+- Games are diverse and support therapeutic and educational goals.
+
+### 📝 Posts & Comments System
+- Users can view posts from doctors and the community.
+- Add, view, and interact with comments (live from the server).
+- Real-time like system for posts, synced with the server.
+
+### 👤 User Management
+- User registration and login with email verification.
+- Password recovery and reset with verification code.
+- Profile page with editing capabilities.
+- Supports multiple user roles: parent and doctor.
 
 ### 🌈 Modern UI/UX
-- Animated backgrounds and responsive design
-- Sidebar navigation and progress indicators
+- Responsive design with animated backgrounds and modern look.
+- Dynamic sidebar and navigation bar based on active section.
+- Emoji support in chat.
 
 ### 📱 Mobile App Version
 - The project includes a mobile application version for broader accessibility (details available upon request).
@@ -150,6 +151,45 @@ Below is a list of all main packages and libraries used in this project, with a 
 
 ### Other
 - **react-bootstrap**, **react-toastify**, **react-icons**, **emoji-picker-react**, **react-datepicker**, **react-phone-number-input**, **react-select**, **react-world-flags**: All imported and used in various UI components and forms.
+
+---
+
+## 🩺 Doctor Chat & Video Call Integration
+
+### How We Built the Doctor Chat & Video Call System
+
+1. **Real-time Chat:**
+   - Used **socket.io-client** in the React frontend for real-time communication with the backend server.
+   - The backend manages connections using **Socket.io** (Node.js or Python backend).
+   - Each user (doctor or patient) is assigned a unique ID and joined to a private chat room.
+   - When a message is sent, it is instantly broadcast to the other party without page reloads.
+
+2. **Video & Audio Calls:**
+   - Leveraged **WebRTC** to enable direct video and audio calls between users.
+   - Used a library such as **simple-peer** or **peerjs** in the frontend to simplify WebRTC integration with React.
+   - Signaling data (offer/answer and ICE candidates) is exchanged via **Socket.io** between users through the server.
+   - When a call is initiated, a live video window opens between doctor and patient, with the ability to end the call at any time.
+
+3. **Frontend & Backend Integration:**
+   - All messages and call logs are stored in the database via a dedicated API.
+   - Connections are secured using JWT or authentication tokens to ensure user privacy.
+   - The UI is designed to be simple and user-friendly, supporting emojis and new message notifications.
+
+### Main Libraries & Tools Used
+- **socket.io-client**: For real-time chat communication.
+- **WebRTC**: For building video and audio calls.
+- **simple-peer** or **peerjs**: To simplify WebRTC usage in React.
+- **axios**: For API requests to the backend.
+- **react-bootstrap** or **styled-components**: For UI design of chat and call windows.
+- **emoji-picker-react**: For emoji support in chat.
+- **react-icons**: For icons in the UI.
+- **Custom CSS**: For chat and video call styling.
+
+### Example Flow
+1. The user clicks the "Start Call" button.
+2. A WebRTC connection is established between both parties, with signaling handled via Socket.io.
+3. A video window appears for both users, enabling direct communication.
+4. When the call ends, the connection is closed and the window is dismissed.
 
 ---
 

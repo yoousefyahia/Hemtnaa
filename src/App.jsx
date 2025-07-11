@@ -10,7 +10,6 @@ import Home from "./components/posts/Home";
 import AnimatedBackground from './components/AnimatedBackground';
 import ResetPassword from "./pages/ResetPassword";
 import VerifyCode from "./pages/VerifyCode";
-import DoctorDemo from "./pages/DoctorDemo";
 
 function App() {
   return (
@@ -29,7 +28,6 @@ function App() {
             <Route path="/posts" element={<Home />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/verify-code" element={<VerifyCode />} />
-            <Route path="/doctor-demo" element={<DoctorDemo />} />
           </Routes>
         </Router>
       </div>
