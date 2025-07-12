@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import ForgetPassword from "./pages/ForgetPassword";
-import SignUp from "./pages/SignUp";
-import LandingPage from "./pages/LandingPage";
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
-import Home from "./components/posts/Home";
+import Login from "./auth/Login";
+import ForgetPassword from "./auth/ForgetPassword";
+import SignUp from "./auth/SignUp";
+import ChildLandingPage from "./child-ui/landing/ChildLandingPage";
+import ChildProfile from "./child-ui/profile/ChildProfile";
+import EditProfile from "./auth/EditProfile";
+import ChildHome from "./child-ui/home/ChildHome";
 import AnimatedBackground from './components/AnimatedBackground';
-import ResetPassword from "./pages/ResetPassword";
-import VerifyCode from "./pages/VerifyCode";
+import ResetPassword from "./auth/ResetPassword";
+import VerifyCode from "./auth/VerifyCode";
 
 function App() {
   return (
@@ -22,10 +22,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgetPassword />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/landing" element={<LandingPage />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/landing" element={<ChildLandingPage />} />
+            <Route path="/profile" element={<ChildProfile />} />
             <Route path="/edit-profile" element={<EditProfile />} />
-            <Route path="/posts" element={<Home />} />
+            <Route path="/posts" element={<ChildHome />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/verify-code" element={<VerifyCode />} />
           </Routes>

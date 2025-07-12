@@ -1,8 +1,0 @@
-
-  /* لما تكون الشاشة صغيرة (موبايل أو تابلت) يشيل الهامش */
-  @media (max-width: 768px) {
-    .main-content {
-      margin-right: 0;
-    }
-  }
-  

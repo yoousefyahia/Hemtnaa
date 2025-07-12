@@ -1,0 +1,92 @@
+/* === AI Chat Container === */
+.ai-chat-container
+  width: 100%
+  max-width: 500px /* Adjusted max-width for better viewing on desktop */
+  margin: 0 auto
+  font-family: 'Cairo', sans-serif /* A nice Arabic-friendly font */
+
+.ai-chat-header
+  text-align: center
+  margin-bottom: 24px
+  color: #0d6efd /* Primary blue color */
+  font-size: 2rem
+  font-weight: bold
+
+/* === react-simple-chatbot overrides === */
+.rsc-container
+  border-radius: 12px !important
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important
+  width: 100% !important
+  max-width: 500px !important
+  margin: 0 auto !important
+
+.rsc-header
+  background-color: #0d6efd !important
+  color: white !important
+  text-align: center !important
+  font-size: 1.2rem !important
+  font-weight: bold !important
+  border-top-left-radius: 12px !important
+  border-top-right-radius: 12px !important
+
+.rsc-content
+  padding: 20px !important
+
+.rsc-ts-bot .rsc-ts-bubble
+  background-color: #f1f3f5 !important
+  color: #333 !important
+  border-radius: 18px 18px 18px 4px !important
+
+.rsc-ts-user .rsc-ts-bubble
+  background-color: #0d6efd !important
+  color: white !important
+  border-radius: 18px 18px 4px 18px !important
+
+.rsc-os-option-element
+  background-color: #fff !important
+  color: #0d6efd !important
+  border: 1px solid #0d6efd !important
+  border-radius: 20px !important
+  padding: 12px !important
+  margin: 4px 0 !important
+  transition: background-color 0.2s, color 0.2s
+
+.rsc-os-option-element:hover
+  background-color: #0d6efd !important
+  color: #fff !important
+
+.rsc-input
+  border-radius: 20px !important
+  padding: 10px 16px !important
+  border: 1px solid #ccc !important
+  direction: rtl !important
+  text-align: right !important
+  unicode-bidi: bidi-override
+
+.rsc-input:focus
+  border-color: #0d6efd !important
+  box-shadow: none !important
+
+/* Ensure placeholder text is also RTL */
+.rsc-input::placeholder
+  direction: rtl !important
+  text-align: right !important
+  unicode-bidi: bidi-override
+
+.rsc-submit-button
+  background-color: #0d6efd !important
+  color: white !important
+  border-radius: 50% !important
+  width: 44px !important
+  height: 44px !important
+  margin-left: 8px !important
+  fill: white !important
+
+/* === Responsive adjustments === */
+@media (max-width: 576px)
+  .ai-chat-header
+    font-size: 1.5rem
+
+@media (max-width: 600px)
+  .ai-chat-container
+    margin-bottom: 70px 
