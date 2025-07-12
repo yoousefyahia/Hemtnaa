@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "./UserContext";
 import "../styles/NavBar.css";
 import { useState, useRef } from "react";
-import logo from "../assets/Hemtnaa.png";
+import logo from "../assets/Hemtnaa.jpeg";
 import defaultUserImage from "../assets/Ellipse 8.png";
 
 const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, activeTab }) => {

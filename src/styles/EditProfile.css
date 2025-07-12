@@ -1,3 +1,23 @@
+/* تعريف الشعار في صفحة تعديل الملف الشخصي */
+.slogin {
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ضبط حجم اللوجو في الموبايل */
+@media (max-width: 768px) {
+  .slogin {
+    height: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slogin {
+    height: 140px;
+  }
+}
+
 @media (max-width: 576px) {
     .edit-form-container {
       padding: 20px;

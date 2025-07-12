@@ -4,7 +4,7 @@ import { Form, Button, Container, Row, Col, Toast, ToastContainer } from 'react-
 import { Link, useNavigate } from 'react-router-dom';
 import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css';
-import hemtna from "../assets/Hemtnaa.png";
+import hemtna from "../assets/Hemtnaa.jpeg";
 import "../styles/sign.css";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ar from "date-fns/locale/ar";

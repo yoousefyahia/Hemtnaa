@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../components/UserContext";
-import logo from "../assets/Hemtnaa.png";
+import logo from "../assets/Hemtnaa.jpeg";
 import defaultUserImage from "../assets/Ellipse 8.png";
 import "../styles/profile.css"
 import { ToastContainer } from 'react-toastify';
@@ -43,7 +43,6 @@ const Profile = () => {
     src={logo} 
     alt="شعار الموقع" 
     className="logo" 
-    style={{ width: "100%", maxWidth: "180px", height: "auto" }} 
   />
 </div>
 

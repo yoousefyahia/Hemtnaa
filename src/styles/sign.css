@@ -51,6 +51,29 @@
   }
 }
 
+/*  صورة الشعار */
+.home-image {
+  width: 300px;
+  height: auto;
+  margin-bottom: 30px;
+  object-fit: contain;
+}
+
+/* ضبط حجم اللوجو في الموبايل */
+@media (max-width: 768px) {
+  .home-image {
+    width: 250px;
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-image {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+}
+
 /* دعم الوضع الداكن للحقول */
 @media (prefers-color-scheme: dark) {
   input, select, textarea {

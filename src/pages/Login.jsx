@@ -7,7 +7,7 @@ import ellipse2 from "../assets/Ellipse 2.png";
 import rectangle from "../assets/Rectangle.png";
 import home from "../assets/home.png";
 import group from "../assets/Group.png";
-import hemtna from "../assets/Hemtnaa.png";
+import hemtna from "../assets/Hemtnaa.jpeg";
 import axios from "axios";
 import { useUser } from "../components/UserContext";
 import defaultUserImage from "../assets/Ellipse 8.png";

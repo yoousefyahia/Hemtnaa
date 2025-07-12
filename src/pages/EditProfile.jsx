@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/Hemtnaa.png";
+import logo from "../assets/Hemtnaa.jpeg";
 import defaultUserImage from "../assets/Ellipse 8.png";
 import { useUser } from "../components/UserContext";
 import "react-phone-number-input/style.css";
