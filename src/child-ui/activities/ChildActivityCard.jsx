@@ -12,11 +12,15 @@ const ActivityCard = ({
   return (
     <div className="activity-card">
       <div className="activity-card-checkbox">
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={onCheck}
-        />
+        <label className="custom-checkbox-label">
+          <input
+            type="checkbox"
+            className="custom-checkbox-input"
+            checked={checked}
+            onChange={onCheck}
+          />
+          <span className="custom-checkbox-span"></span>
+        </label>
       </div>
       <div className="activity-card-content">
         <div className="activity-card-header">

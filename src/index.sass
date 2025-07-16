@@ -44,6 +44,50 @@ button:focus,
 button:focus-visible
   outline: 4px auto -webkit-focus-ring-color
 
+.custom-checkbox-label
+  display: flex
+  align-items: center
+  cursor: pointer
+  gap: 6px
+
+.custom-checkbox-input
+  display: none
+
+.custom-checkbox-span
+  width: 16px
+  height: 16px
+  border: 2px solid #111 !important
+  border-radius: 4px
+  background: #fff !important
+  display: inline-block
+  position: relative
+  transition: background 0.2s, border-color 0.2s
+
+.custom-checkbox-input:checked + .custom-checkbox-span
+  background: #fff !important
+  border-color: #111 !important
+
+.custom-checkbox-input:checked + .custom-checkbox-span::after
+  content: "✓"
+  color: #000 !important
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  font-size: 12px
+  line-height: 1
+  font-weight: 900
+  text-shadow: none !important
+  -webkit-text-fill-color: #000 !important
+
+.activity-card-checkbox .custom-checkbox-span
+  width: 22px
+  height: 22px
+
+.activity-card-checkbox .custom-checkbox-input:checked + .custom-checkbox-span::after
+  font-size: 16px
+  font-weight: 900
+
 @media (prefers-color-scheme: light)
   :root
     color: #213547
@@ -54,3 +98,14 @@ button:focus-visible
 
   button
     background-color: #f9f9f9 
+
+@media (prefers-color-scheme: dark)
+  .custom-checkbox-span
+    background: #fff !important
+    border: 2px solid #111 !important
+  .custom-checkbox-input:checked + .custom-checkbox-span
+    background: #fff !important
+    border-color: #111 !important
+  .custom-checkbox-input:checked + .custom-checkbox-span::after
+    color: #000 !important
+    -webkit-text-fill-color: #000 !important 

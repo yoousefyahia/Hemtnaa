@@ -130,8 +130,10 @@ const Login = () => {
           />
 
           <div className="remember-forgot">
-            <label style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <input type="checkbox" /> تذكرني
+            <label className="custom-checkbox-label" style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <input type="checkbox" className="custom-checkbox-input" />
+              <span className="custom-checkbox-span"></span>
+              تذكرني
             </label>
             <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
           </div>

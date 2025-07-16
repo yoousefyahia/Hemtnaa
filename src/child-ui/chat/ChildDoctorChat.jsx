@@ -104,7 +104,7 @@ const DoctorChat = ({
     // دعم جميع أشكال البيانات
     console.log('emojiData:', emojiData);
     if (emojiData.emoji) {
-      setMessage((prev) => prev + emojiData.emoji);
+    setMessage((prev) => prev + emojiData.emoji);
     } else if (emojiData.native) {
       setMessage((prev) => prev + emojiData.native);
     } else if (typeof emojiData === 'string') {
