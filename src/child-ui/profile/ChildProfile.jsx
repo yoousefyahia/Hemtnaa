@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../components/UserContext";
-import logo from "../../assets/Hemtnaa.jpeg";
 import defaultUserImage from "../../assets/Ellipse 8.png";
 import "./styles/ChildProfile.sass"
 import { ToastContainer } from 'react-toastify';
@@ -40,7 +39,7 @@ const Profile = () => {
     <div dir="rtl" style={{ textAlign: 'right' }}>
       <div className="mb-4" style={{ paddingRight: "20px" }}>
   <img 
-    src={logo} 
+    src={"/Hemtnaa.png"} 
     alt="شعار الموقع" 
     className="logo" 
   />

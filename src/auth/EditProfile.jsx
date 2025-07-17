@@ -1,38 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/Hemtnaa.jpeg";
+import { useNavigate } from "react-router-dom";
 import defaultUserImage from "../assets/Ellipse 8.png";
 import { useUser } from "../child-ui/components/UserContext";
-import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
-import "./styles/EditProfile.sass";
-import DatePicker, { registerLocale } from "react-datepicker";
-import ar from "date-fns/locale/ar";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-
-registerLocale("ar", ar);
+import "./styles/EditProfile.sass";
 
 const EditProfile = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  
   const { user, updateUser, setUser } = useUser();
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    country: "",
-    phone: "",
-    education: "",
-    experience: "",
-    birthDate: ""
   });
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [profileImage, setProfileImage] = useState(user.profileImage);
 
   useEffect(() => {
@@ -40,12 +22,6 @@ const EditProfile = () => {
       firstName: user.firstName || user.first_name || "",
       lastName: user.lastName || user.last_name || "",
       email: user.email || "",
-      password: user.password || "",
-      country: user.country || "",
-      phone: user.phone || "",
-      education: user.education || user.child_education_level || "",
-      experience: user.experience || "",
-      birthDate: user.birthDate || user.child_birthdate || ""
     });
     setProfileImage(user.profileImage);
   }, [user]);
@@ -58,13 +34,6 @@ const EditProfile = () => {
     }));
   };
 
-  const handlePhoneChange = (value) => {
-    setFormData(prev => ({
-      ...prev,
-      phone: value ? value.replace(/\s+/g, '') : ''
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await updateUser({
@@ -74,7 +43,6 @@ const EditProfile = () => {
       profileImage
     });
     if (result.success) {
-      // جلب بيانات المستخدم من السيرفر بعد التحديث
       try {
         const token = localStorage.getItem("token");
         const meRes = await axios.get("https://hemtna.onrender.com/api/auth/me", {
@@ -93,20 +61,6 @@ const EditProfile = () => {
         alert("فشل تحديث الملف الشخصي. حاول مرة أخرى.");
       }
     }
-  };
-
-  const formatDate = (dateString) => {
-    if (!dateString) return "7 مارس 2023";
-    
-    const date = new Date(dateString);
-    const monthNames = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
-      "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
-    
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
-    
-    return `${day} ${month} ${year}`;
   };
 
   const handleImageChange = (e) => {
@@ -132,7 +86,7 @@ const EditProfile = () => {
 
       {/*الشعار*/}
       <div style={{ position: "absolute", top: "20px", left: "20px", zIndex: 10 }}>
-        <img src={logo} alt="شعار الموقع" style={{ height: "150px" }} className="slogin" />
+        <img src={"/Hemtnaa.png"} alt="شعار الموقع" style={{ height: "150px" }} className="slogin" />
       </div>
 
       {/* صورة الملف الشخصي   */}

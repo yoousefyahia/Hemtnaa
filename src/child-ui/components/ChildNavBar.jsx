@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "./UserContext";
 import "./styles/ChildNavBar.sass";
 import { useState, useRef } from "react";
-import logo from "../../assets/Hemtnaa.jpeg";
 import defaultUserImage from "../../assets/Ellipse 8.png";
 
 const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, activeTab }) => {
@@ -57,7 +56,7 @@ const NavBar = ({ progress = 0, showProgress = true, reverseLayout = false, acti
       <div className={`d-flex justify-content-between align-items-center w-100 ${reverseLayout ? 'flex-row-reverse' : ''}`}>
         {/* شعار اللوجو في أقصى اليمين */}
         {activeTab !== 'games' && activeTab !== 'activities' && (
-          <img src={logo} alt="شعار الموقع" style={{ height: "60px", marginRight: 16 }} />
+          <img src={"/Hemtnaa.png"} alt="شعار الموقع" style={{ height: "60px", marginRight: 16 }} />
         )}
         {/* صورة اليوزر مع القائمة المنسدلة */}
         <div className="d-flex align-items-center position-relative" ref={dropdownRef}>
