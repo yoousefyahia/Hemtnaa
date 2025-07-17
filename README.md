@@ -1,7 +1,7 @@
 # Hemtnaa
 
 <div align="center">
-  <img src="src/assets/Hemtnaa.jpeg" alt="Hemtnaa Logo" width="200" height="auto" />
+  <img src="src/assets/Hemtnaa.png" alt="Hemtnaa Logo" width="200" height="auto" />
 </div>
 
 **Project Team Leader:** Eng. Youssef Yehia

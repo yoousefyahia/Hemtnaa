@@ -36,7 +36,7 @@ const ChatTabs = () => {
             transition: 'all 0.2s',
           }}
         >
-          شات الدكتور
+          التواصل مع الطبيب
         </button>
       </div>
       {activeTab === "ai" ? <ChildAIChat /> : <ChildDoctorChat />}
