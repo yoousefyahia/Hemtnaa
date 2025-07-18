@@ -74,6 +74,7 @@
   justify-content: center
   flex-direction: column
   color: #fff
+  overflow: hidden
 
 .call-info
   position: absolute
@@ -408,3 +409,16 @@
 
   .call-controls
     gap: 20px 
+
+// تخصيص الفيديو المحلي ليكون مربعًا وكبيرًا ومتجاوبًا
+.local-video
+  width: min(90vw, 90vh)
+  height: min(90vw, 90vh)
+  aspect-ratio: 1/1
+  object-fit: cover
+  max-width: 500px
+  max-height: 500px
+  border-radius: 20px
+  background: #000
+  display: block
+  margin: 0 auto 

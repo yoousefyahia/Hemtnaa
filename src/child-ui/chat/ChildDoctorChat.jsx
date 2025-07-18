@@ -55,6 +55,18 @@ const DoctorChat = ({
     bio: doctor.bio
   }), [doctor]);
 
+  // منع التمرير في body عند تفعيل المكالمة
+  useEffect(() => {
+    if (callOverlay) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [callOverlay]);
+
   useEffect(() => {
     socket.on("receive-message", (data) => {
       const now = new Date();
