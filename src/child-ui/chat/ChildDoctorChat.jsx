@@ -376,7 +376,11 @@ const DoctorChat = ({
                     autoPlay
                     muted
                     playsInline
-                    ref={video => { if (video) video.srcObject = localStream; }}
+                    ref={video => {
+                      if (video && video.srcObject !== localStream) {
+                        video.srcObject = localStream;
+                      }
+                    }}
                     className="local-video"
                   />
                   {remoteStream && (
