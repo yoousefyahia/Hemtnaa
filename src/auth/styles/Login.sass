@@ -1,21 +1,22 @@
-/* منع ظهور شريط التمرير في جميع أنحاء صفحة تسجيل الدخول */
-*
+/* منع ظهور شريط التمرير في صفحة تسجيل الدخول فقط */
+.login-container
   scrollbar-width: none /* Firefox */
   -ms-overflow-style: none /* Internet Explorer 10+ */
 
-*::-webkit-scrollbar
+.login-container::-webkit-scrollbar
   display: none /* WebKit browsers (Chrome, Safari, Edge) */
 
-/* تطبيق خاص على الموبايل */
+/* تطبيق خاص على الموبايل لصفحة تسجيل الدخول فقط */
 @media (max-width: 768px)
-  *
+  .login-container
     scrollbar-width: none
     -ms-overflow-style: none
+    overflow: hidden
 
-  *::-webkit-scrollbar
+  .login-container::-webkit-scrollbar
     display: none
 
-  body
+  .login-container body
     overflow: hidden
 
 .login-container
