@@ -1,24 +1,3 @@
-/* منع ظهور شريط التمرير في صفحة تسجيل الدخول فقط */
-.login-container
-  scrollbar-width: none /* Firefox */
-  -ms-overflow-style: none /* Internet Explorer 10+ */
-
-.login-container::-webkit-scrollbar
-  display: none /* WebKit browsers (Chrome, Safari, Edge) */
-
-/* تطبيق خاص على الموبايل لصفحة تسجيل الدخول فقط */
-@media (max-width: 768px)
-  .login-container
-    scrollbar-width: none
-    -ms-overflow-style: none
-    overflow: hidden
-
-  .login-container::-webkit-scrollbar
-    display: none
-
-  .login-container body
-    overflow: hidden
-
 .login-container
   display: grid
   grid-template-columns: 30% 70% /* الجزء الشمال 40% واليمين 60% */
