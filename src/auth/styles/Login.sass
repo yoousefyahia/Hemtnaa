@@ -181,3 +181,17 @@ input
   input[type="checkbox"]
     background: #222 !important
     border: 1.5px solid #888 !important 
+
+/* منع شريط التمرير في صفحة تسجيل الدخول فقط */
+body:has(.login-container), 
+html:has(.login-container)
+  overflow: hidden
+  height: 100%
+  margin: 0
+  padding: 0
+
+/* بديل إذا لم يدعم المتصفح :has() */
+.login-container
+  overflow: hidden
+  height: 100vh
+  width: 100vw 
